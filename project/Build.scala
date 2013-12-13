@@ -11,7 +11,9 @@ object ApplicationBuild extends Build {
     // Add your project dependencies here,
     javaCore,
     javaJdbc,
-    javaEbean
+    javaJpa,
+    "org.hibernate" % "hibernate-entitymanager" % "4.1.9.Final",
+    "mysql" % "mysql-connector-java" % "5.1.22"
   )
 
   val main = play.Project(appName, appVersion, appDependencies).settings(

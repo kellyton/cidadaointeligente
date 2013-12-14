@@ -8,7 +8,7 @@ import services.FinancasService;
 public class FinancasController extends Controller{
 
 	@Transactional
-	public Result configurarFinancas(){
+	public static Result configurarFinancas(){
 		FinancasService service = new FinancasService();
 		service.processarDespesas();
 		return ok("Foi");

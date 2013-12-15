@@ -111,16 +111,16 @@ public class Escola {
 		this.nome = nome;
 	}
 	public String getLatitude() {
-		return latitude;
+		return latitude.replace(",", ".");
 	}
 	public void setLatitude(String latitude) {
-		this.latitude = latitude;
+		this.latitude = latitude.replace(",", ".");
 	}
 	public String getLongitude() {
-		return longitude;
+		return longitude.replace(",", ".");
 	}
 	public void setLongitude(String longitude) {
-		this.longitude = longitude;
+		this.longitude = longitude.replace(",", ".");
 	}
 	public String getCep() {
 		return cep;

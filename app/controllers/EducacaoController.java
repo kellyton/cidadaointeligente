@@ -44,6 +44,18 @@ public class EducacaoController extends Controller{
 		return ok(views.html.escolas.render(escolas));
 		
 	}
+
+	/**
+	 * Show details of escola id
+	 * @param id
+	 * @return
+	 */
+	
+	@Transactional
+	public static Result showEscola(long id){
+		Escola escola = new EducacaoService().getEscola(id);
+		return ok(views.html.escoladetalhe.render(escola));
+	}
 	
 	/**
 	 * Chama o configurador, que gera e trata o banco

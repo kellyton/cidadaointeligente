@@ -27,5 +27,11 @@ public class MapService extends Controller {
 	public static Result showMapEscolas(){
 		List<Escola> escolas = new EducacaoService().getEscolas();
 		return ok(views.html.mapaescolas.render(escolas));
-	}	
+	}
+	
+	@Transactional
+	public static Result showMapEscola(long id){
+		Escola escola = new EducacaoService().getEscola(id);
+		return ok(views.html.mapaescolaindividual.render(escola));
+	}
 }

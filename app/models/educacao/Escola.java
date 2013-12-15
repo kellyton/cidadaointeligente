@@ -131,6 +131,9 @@ public class Escola {
 	public String getEndereco() {
 		return endereco;
 	}
+	public String getEnderecoCompleto(){
+		return endereco + ", " + enderecoNumero + " " + enderecoComplemento + ", " + bairro + ". CEP: " + cep ;
+	}
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
 	}

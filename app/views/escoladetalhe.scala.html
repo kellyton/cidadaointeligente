@@ -1,0 +1,109 @@
+@(escola: models.educacao.Escola)
+
+@content = {
+
+<div class="page-head">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h3>@escola.getNome()</h3>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="content">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+         <div class="panel-group" id="accordion">
+           
+           @************Primeira parte *@
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						@* <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1"> *@
+						<a class="accordion-toggle" data-parent="#accordion">
+							Localização
+						</a>
+					</h4>
+				</div>
+				
+				<div id="collapse1" class="panel-collapse in" style="height: auto;">
+	               <div class="panel-body">
+		               	<div class="widget-content" align="center">
+							<iframe src="@routes.MapService.showMapEscola(escola.getCodigoEscola())" width="100%" height="300px"></iframe><br>
+							<a href="@routes.MapService.showMapEscola(escola.getCodigoEscola())" target="_blank">Clique AQUI para expandir</a><br>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			@************Segunda parte *@
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a class="accordion-toggle" data-parent="#accordion">
+							Dados Demográficos
+						</a>
+					</h4>
+				</div>	                 
+	            <div id="collapse2" class="panel-collapse in">   
+	            	<div class="panel-body">    
+	             		<div class="widget">
+	                		<div class="widget-content" style="display: block;">
+								<p>
+								<b>Nome: @escola.getNome() </b><br>
+								<b>Endereço: @escola.getEnderecoCompleto()</b><br>
+								<b>Telefone: @escola.getTelefone()</b><br>
+								<b>E-mail: @escola.getEmail()</b><br>
+								</p>
+								<p>
+								<br><b>Possui água pela rede pública?</b> @util.VerboseBoolean.show(escola.isAguaRedePublica())
+								<br><b>Possui esgoto pela rede pública?</b> @util.VerboseBoolean.show(escola.isEsgotoRedePublica())
+								<br><b>Possui coleta de lixo periódica?</b> @util.VerboseBoolean.show(escola.isLixoColetaPeriodica())
+								</p>
+								<p>
+								<br><b>Possui laboratório de informática?</b> @util.VerboseBoolean.show(escola.isDependenciaLaboratorioInformatica())
+								<br><b>Possui laboratório de ciências?</b> @util.VerboseBoolean.show(escola.isDependenciaLaboratorioCiencias())
+								<br><b>Possui biblioteca?</b> @util.VerboseBoolean.show(escola.isDependenciaBiblioteca())
+								<br><b>Possui vias adequadas para portadores de necessidades especiais?</b> @util.VerboseBoolean.show(escola.isDependenciaViasAdequadasDeficiencia())
+								<br><b>Possui refeitório?</b> @util.VerboseBoolean.show(escola.isDependenciaRefeitorio())
+								<br><b>Possui auditório?</b> @util.VerboseBoolean.show(escola.isDependenciaAuditorio())
+								<br><b>Possui área verde?</b> @util.VerboseBoolean.show(escola.isDependenciaAreaVerde())
+								</p>
+								<p>
+								<br><b>Possui quantas salas?</b> @escola.getQuantidadeSalasExistentes()
+								<br><b>Utiliza quantas salas?</b> @escola.getQuantidadeSalasUtilizadasForaEDentro()
+								</p>
+								<p>
+								<br><b>Possui quantos computadores?</b> @escola.getComputadoresQuantidade()
+								<br><b>Quantos computadores são disponibilizados aos alunos?</b> @escola.getComputadoresQuantidadeAlunos()
+								<br><b>Possui acesso a internet?</b> @util.VerboseBoolean.show(escola.isAcessoInternet())
+								<br><b>Possui banda larga?</b> @util.VerboseBoolean.show(escola.isBandaLarga())
+								</p>
+								<p>
+								<br><b>Possui quantos funcionários?</b> @escola.getTotalFuncionarios()
+								<br><b>Possui creche regular?</b> @util.VerboseBoolean.show(escola.isRegularCreche())
+								<br><b>Possui pré-escola regular?</b> @util.VerboseBoolean.show(escola.isRegularPreescolar())
+								<br><b>Possui ensino fundamental regular?</b> @util.VerboseBoolean.show(escola.isRegularFundamental())
+								<br><b>Possui ensino fundamental especial?</b> @util.VerboseBoolean.show(escola.isEspecialFundamental())
+								<br><b>Possui educação para jovens e adultos fundamental?</b> @util.VerboseBoolean.show(escola.isEjaFundamental())
+								<br><b>Possui educação para jovens e adultos fundamental especial?</b> @util.VerboseBoolean.show(escola.isEspecialEjaFundamental())
+								<br><b>Possui educação para jovens e adultos pró-jovem?</b> @util.VerboseBoolean.show(escola.isEjaProjovem())
+								</p>
+	                		</div>
+	              		</div>
+	              	</div>
+	            </div>
+			</div>
+         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+}
+
+@main(content)

@@ -23,5 +23,11 @@ public class EducacaoService {
 				.getResultList();
 		return list;
 	}
+
+	public Escola getEscola(long id) {
+		return (Escola)JPA.em().createQuery("FROM Escola WHERE codigoEscola = :id")
+				.setParameter("id", id)
+				.getSingleResult();
+	}
 	
 }

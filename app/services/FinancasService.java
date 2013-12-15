@@ -11,6 +11,11 @@ import extractor.FinancasExtractor;
 
 public class FinancasService {
 
+	public void processar(int ano) {
+		new FinancasExtractor().execute(ano);
+		
+	}
+	
 	public void processar() {
 		new FinancasExtractor().execute();
 		

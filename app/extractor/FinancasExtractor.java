@@ -29,6 +29,34 @@ public class FinancasExtractor {
 		arquivos.put(2013, "./data/despesas-2013.csv");
 	}
 	
+	public void execute(int ano){
+		int results = 0;
+		
+		Logger.info("Processando ano de " + ano);
+		
+		results = processarArquivo(ano);
+		Logger.info("Arquivos processados com " + results + " erros.");
+	
+		//Necessário senão não tem dados para totalizar
+		JPA.em().getTransaction().commit();
+		JPA.em().getTransaction().begin();
+		
+		results = totalizarTotal(ano);
+		Logger.info("Totalização total finalizada com " + results + " adições.");
+		results = totalizarEmpresas(ano);
+		Logger.info("Totalização por empresa finalizada com " + results + " adições.");
+		results = totalizarFuncao(ano);
+		Logger.info("Totalização por função finalizada com " + results + " adições.");
+		results = totalizarElemento(ano);
+		Logger.info("Totalização por elemento finalizada com " + results + " adições.");
+		results = totalizarOrgao(ano);
+		Logger.info("Totalização por órgão finalizada com " + results + " adições.");
+		
+		JPA.em().getTransaction().commit();
+		JPA.em().getTransaction().begin();
+		Logger.info("Ano de " + ano + " processado.");
+	}
+	
 	public void execute(){
 		int results = 0;
 		

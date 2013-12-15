@@ -19,6 +19,22 @@ public class FinancasController extends Controller{
 	 * @return
 	 */
 	@Transactional
+	public static Result configurar(int ano){
+		Date ini = new Date();
+		
+		FinancasService service = new FinancasService();
+		service.processar(ano);
+		
+		Date fim = new Date();
+		Logger.info((fim.getTime() - ini.getTime())/1000 + " segundos");
+		return ok("Foi");
+	}
+	
+	/**
+	 * Chama o configurador, que gera e trata o banco
+	 * @return
+	 */
+	@Transactional
 	public static Result configurar(){
 		Date ini = new Date();
 		

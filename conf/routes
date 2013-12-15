@@ -6,7 +6,7 @@
 GET     /                           controllers.Application.index()
 
 #Configurations. MUST be before others
-GET     /financas/configure			controllers.FinancasController.configurar()
+GET     /financas/configure/:id			controllers.FinancasController.configurar(id: Integer)
 GET     /educacao/configure			controllers.EducacaoController.configurar()
 
 #Financas

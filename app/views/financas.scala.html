@@ -1,0 +1,356 @@
+@(ano: Integer)(despesasPorFuncao: List[Total])(despesasPorElemento: List[Total])(despesasPorOrgao: List[Total])(despesasPorCredor: List[Total])
+
+@content = {
+
+<div class="page-head">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h3>Orçamento de @ano</h3>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="content">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+         <div class="panel-group" id="accordion">
+           
+           @************Primeira parte *@
+			<div class="panel panel-default">
+				<div class="panel-heading">
+	               <h4 class="panel-title">
+	                 <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+	                   Despesas por Função
+	                 </a>
+	               </h4>
+	             </div>
+	             <div id="collapse1" class="panel-collapse in" style="height: auto;">
+	               <div class="panel-body">
+	                 
+	                 <div class="widget-content" align="center">
+						<div id="graficoFuncao"></div>
+					</div>
+	                 
+		             <div class="widget">
+		                <div class="widget-content" style="display: block;">
+							<table class="table table-striped table-bordered table-hover">
+								<thead>
+									<tr>
+										<th>Função</th>
+										<th>Empenhado</th>
+										<th>Pago</th>
+									</tr>
+								</thead>
+			                    <tbody>
+			                    	@for((desp, index) <- despesasPorFuncao.zipWithIndex){
+				                    <tr>
+				                      <td>@desp.getNome()</td>
+				                      <td>R$ @desp.getValorFormatado()</td>
+				                      <td>R$ @desp.getValor2Formatado()</td>
+				                    </tr>
+				                    }
+								</tbody>
+							</table>
+		                </div>
+		              </div>
+	                 
+	               </div>
+	             </div>
+			</div>
+           
+           @************Segunda parte *@
+			<div class="panel panel-default">
+				<div class="panel-heading">
+	               <h4 class="panel-title">
+	                 <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse2">
+	                   Despesas por Elemento
+	                 </a>
+	               </h4>
+	             </div>
+	             <div id="collapse2" class="panel-collapse collapse">
+	               <div class="panel-body">
+	                 
+	                 <div class="widget-content" align="center">
+						<div id="graficoElemento"></div>
+					</div>
+	                 
+		             <div class="widget">
+		                <div class="widget-content" style="display: block;">
+							<table class="table table-striped table-bordered table-hover">
+								<thead>
+									<tr>
+										<th>Elemento</th>
+										<th>Empenhado</th>
+										<th>Pago</th>
+									</tr>
+								</thead>
+			                    <tbody>
+			                    	@for((desp, index) <- despesasPorElemento.zipWithIndex){
+				                    <tr>
+				                      <td>@desp.getNome()</td>
+				                      <td>R$ @desp.getValorFormatado()</td>
+				                      <td>R$ @desp.getValor2Formatado()</td>
+				                    </tr>
+				                    }
+								</tbody>
+							</table>
+		                </div>
+		              </div>
+	                 
+	               </div>
+	             </div>
+			</div>
+           
+           
+           @************Terceira parte *@
+			<div class="panel panel-default">
+				<div class="panel-heading">
+	               <h4 class="panel-title">
+	                 <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse3">
+	                   Despesas por Órgão
+	                 </a>
+	               </h4>
+	             </div>
+	             <div id="collapse3" class="panel-collapse collapse">
+	               <div class="panel-body">
+	                 
+	                 <div class="widget-content" align="center">
+						<div id="graficoOrgao"></div>
+					</div>
+	                 
+		             <div class="widget">
+		                <div class="widget-content" style="display: block;">
+							<table class="table table-striped table-bordered table-hover">
+								<thead>
+									<tr>
+										<th>Órgão</th>
+										<th>Empenhado</th>
+										<th>Pago</th>
+									</tr>
+								</thead>
+			                    <tbody>
+			                    	@for((desp, index) <- despesasPorOrgao.zipWithIndex){
+				                    <tr>
+				                      <td>@desp.getNome()</td>
+				                      <td>R$ @desp.getValorFormatado()</td>
+				                      <td>R$ @desp.getValor2Formatado()</td>
+				                    </tr>
+				                    }
+								</tbody>
+							</table>
+		                </div>
+		              </div>
+	                 
+	               </div>
+	             </div>
+			</div>
+           
+           @************Quarta parte *@
+			<div class="panel panel-default">
+				<div class="panel-heading">
+	               <h4 class="panel-title">
+	                 <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse4">
+	                   Despesas por Empresa
+	                 </a>
+	               </h4>
+	             </div>
+	             <div id="collapse4" class="panel-collapse collapse">
+	               <div class="panel-body">
+	                 
+		             <div class="widget">
+		                <div class="widget-content" style="display: block;">
+							<table class="table table-striped table-bordered table-hover">
+								<thead>
+									<tr>
+										<th>Empresa</th>
+										<th>Empenhado</th>
+										<th>Pago</th>
+									</tr>
+								</thead>
+			                    <tbody>
+			                    	@for((desp, index) <- despesasPorCredor.zipWithIndex){
+				                    <tr>
+				                      <td>@desp.getNome()</td>
+				                      <td>R$ @desp.getValorFormatado()</td>
+				                      <td>R$ @desp.getValor2Formatado()</td>
+				                    </tr>
+				                    }
+								</tbody>
+							</table>
+		                </div>
+		              </div>
+	                 
+	               </div>
+	             </div>
+			</div>
+           
+         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+(function($){ // encapsulate jQuery
+
+$(function () {
+		
+	$('#graficoFuncao').highcharts({
+		chart: {
+            type: 'column',
+            margin: [ 10, 10, 100, 80]
+        },
+        
+        title: {
+            text: ''
+        },
+        
+        xAxis: {
+            categories: [
+			@for((desp, index) <- despesasPorFuncao.zipWithIndex){
+				@if(index != despesasPorFuncao.size()-1){
+					'@desp.getNome()',
+				} else {
+					'@desp.getNome()'
+				}
+			}
+			],
+        
+	        labels: {
+	            rotation: -45,
+	            align: 'right',
+	            style: {
+	                fontSize: '9px',
+	                fontFamily: 'Verdana, sans-serif'
+	            }
+	        }
+        },
+        legend: {
+            enabled: false
+        },
+        tooltip: {
+            pointFormat: 'R$ {point.y:.1f}',
+        },
+        
+        series: [{
+           	
+        	name: 'Despesas',
+        	data: [
+             	@for((desp, index) <- despesasPorFuncao.zipWithIndex){
+             	['@desp.getNome()', @desp.getValor()],
+             	}
+               ]
+        }]
+    });
+	
+	
+	$('#graficoElemento').highcharts({
+		chart: {
+            type: 'column',
+            margin: [ 10, 10, 100, 80]
+        },
+        
+        title: {
+            text: ''
+        },
+        
+        xAxis: {
+            categories: [
+			@for((desp, index) <- despesasPorElemento.zipWithIndex){
+				@if(index != despesasPorElemento.size()-1){
+					'@desp.getNomeCurto()',
+				} else {
+					'@desp.getNomeCurto()'
+				}
+			}
+			],
+        
+	        labels: {
+	            rotation: -45,
+	            align: 'right',
+	            style: {
+	                fontSize: '9px',
+	                fontFamily: 'Verdana, sans-serif'
+	            }
+	        }
+        },
+        legend: {
+            enabled: false
+        },
+        tooltip: {
+            pointFormat: 'R$ {point.y:.1f}',
+        },
+        
+        series: [{
+           	
+        	name: 'Despesas',
+        	data: [
+             	@for((desp, index) <- despesasPorElemento.zipWithIndex){
+             	['@desp.getNomeCurto()', @desp.getValor()],
+             	}
+               ]
+        }]
+    });
+	
+	$('#graficoOrgao').highcharts({
+		chart: {
+            type: 'column',
+            margin: [ 10, 10, 100, 80]
+        },
+        
+        title: {
+            text: ''
+        },
+        
+        xAxis: {
+            categories: [
+			@for((desp, index) <- despesasPorOrgao.zipWithIndex){
+				@if(index != despesasPorOrgao.size()-1){
+					'@desp.getNomeCurto()',
+				} else {
+					'@desp.getNomeCurto()'
+				}
+			}
+			],
+        
+	        labels: {
+	            rotation: -45,
+	            align: 'right',
+	            style: {
+	                fontSize: '9px',
+	                fontFamily: 'Verdana, sans-serif'
+	            }
+	        }
+        },
+        legend: {
+            enabled: false
+        },
+        tooltip: {
+            pointFormat: 'R$ {point.y:.1f}',
+        },
+        
+        series: [{
+           	
+        	name: 'Despesas',
+        	data: [
+             	@for((desp, index) <- despesasPorOrgao.zipWithIndex){
+             	['@desp.getNomeCurto()', @desp.getValor()],
+             	}
+               ]
+        }]
+    });
+	
+	
+});
+
+})(jQuery); 
+</script> 
+
+
+}
+
+@main(content)

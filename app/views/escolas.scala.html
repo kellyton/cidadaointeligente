@@ -1,0 +1,73 @@
+@(escolas: List[models.educacao.Escola])
+
+@*(escolas: List[models.educacao.Escola])*@
+
+@content = {
+
+<div class="page-head">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h3>Educação no Recife - Dados Gerais</h3>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="content">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+         <div class="panel-group" id="accordion">
+           
+           @************Primeira parte *@
+			<div class="panel panel-default">
+				<div class="panel-heading">
+	               <h4 class="panel-title">
+	                 <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+	                   Escolas da Cidade de Recife
+	                 </a>
+	               </h4>
+	             </div>
+	             <div id="collapse1" class="panel-collapse in" style="height: auto;">
+	               <div class="panel-body">
+	                 
+	                @*<div class="widget-content" align="center">
+						<div id="graficoOrcamento"></div>
+					</div>*@
+	                 
+		             <div class="widget">
+		                <div class="widget-content" style="display: block;">
+							<table class="table table-striped table-bordered table-hover">
+								<thead>
+									<tr>
+										<th>Nome</th>
+										<th>Bairro</th>
+									</tr>
+								</thead>
+			                    <tbody>
+			                    	@for((esc, index) <- escolas.zipWithIndex){
+				                    <tr>
+				                      <td>@esc.getNome()</td>
+				                      <td>@esc.getBairro()</td>
+				                    </tr>
+				                    }
+								</tbody>
+							</table>
+		                </div>
+		              </div>
+	                 
+	               </div>
+	             </div>
+			</div>
+         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+}
+
+@main(content)

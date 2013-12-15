@@ -1,4 +1,4 @@
-package models.origin.financas;
+package models.financas;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

@@ -26,7 +26,7 @@ public class FinancasExtractor {
 		arquivos.put(2010, "./data/despesas-2010.csv");
 		arquivos.put(2011, "./data/despesas-2011.csv");
 		arquivos.put(2012, "./data/despesas-2012.csv");
-		arquivos.put(2013, "./data/despesas-2013.csv");
+		arquivos.put(2013, "./data/recife-dados-despesas-2013.csv");
 	}
 	
 	public void execute(int ano){

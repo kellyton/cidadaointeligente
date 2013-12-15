@@ -33,7 +33,7 @@ public class FinancasExtractor {
 		int results = 0;
 		
 		
-		for (int ano = 2007; ano <= 2008; ano++){
+		for (int ano = 2002; ano <= 2013; ano++){
 			System.gc();
 			Logger.info("Processando ano de " + ano);
 			

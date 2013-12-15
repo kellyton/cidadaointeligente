@@ -24,7 +24,7 @@
 				<div class="panel-heading">
 					<h4 class="panel-title">
 						<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1">
-							Escolas da Cidade de Recife
+							Escolas da Cidade do Recife
 						</a>
 					</h4>
 				</div>
@@ -49,7 +49,7 @@
 			                    <tbody>
 			                    	@for((esc, index) <- escolas.zipWithIndex){
 				                    <tr>
-				                      <td>@esc.getNome()</td>
+				                      <td><a href="@routes.EducacaoController.showEscola(esc.getCodigoEscola())">@esc.getNome()</a></td>
 				                      <td>@esc.getBairro()</td>
 				                    </tr>
 				                    }

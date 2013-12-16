@@ -14,6 +14,7 @@ import play.mvc.Controller;
 import play.mvc.Result;
 import services.EducacaoService;
 import services.FinancasService;
+import static models.educacao.Escola.*;
 
 public class EducacaoController extends Controller{
 
@@ -37,11 +38,26 @@ public class EducacaoController extends Controller{
 	}
 	
 	@Transactional
-	public static Result escolas(){
+	public static Result escolas(long tipo){
 		EducacaoService educacaoService = new EducacaoService();
 		
-		List<Escola> escolas = educacaoService.getEscolas();
-		return ok(views.html.escolas.render(escolas));
+		String tipoNome;
+		List<Escola> escolas;
+		if (tipo == TODAS){
+			escolas = educacaoService.getEscolas();
+		} else {
+			escolas = educacaoService.getEscolas(tipo);
+		}
+		
+		if (tipo == ESCOLA){
+			tipoNome = "Escolas";
+		} else if (tipo == CRECHE){
+			tipoNome = "Creches";
+		} else {
+			tipoNome = "Todas unidades educacionais";
+		}
+		
+		return ok(views.html.escolas.render(tipoNome, tipo, escolas));
 		
 	}
 

@@ -7,6 +7,11 @@ import javax.persistence.Id;
 @Entity
 public class Escola {
 
+	public static final int ESCOLA = 1;
+	public static final int CRECHE = 2;
+	
+	public static final int TODAS = 99;
+	
 	@Id
 	private long codigoEscola;
 	@Column
@@ -91,6 +96,22 @@ public class Escola {
 	private boolean ejaFundamental;
 	@Column
 	private boolean ejaProjovem;
+	
+	public int getTipo(){
+		if (nome.startsWith("CRECHE")){
+			return CRECHE;
+		} else {
+			return ESCOLA;
+		}
+	}
+	
+	public String getTiponOME(){
+		if (getTipo() == CRECHE){
+			return "Creche";
+		} else {
+			return "Escola";
+		}
+	}
 	
 	public long getInepEscola() {
 		return inepEscola;

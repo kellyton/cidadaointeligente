@@ -26,8 +26,8 @@ import services.SaudeService;
 public class MapService extends Controller {
 	
 	@Transactional
-	public static Result showMapEscolas(){
-		List<Escola> escolas = new EducacaoService().getEscolas();
+	public static Result showMapEscolas(long id){
+		List<Escola> escolas = new EducacaoService().getEscolas(id);
 		return ok(views.html.mapaescolas.render(escolas));
 	}
 	

@@ -1,4 +1,4 @@
-@(escolas: List[models.educacao.Escola])
+@(tipoNome: String)(tipo: Long)(escolas: List[models.educacao.Escola])
 
 @content = {
 
@@ -24,7 +24,7 @@
 				<div class="panel-heading">
 					<h4 class="panel-title">
 						<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1">
-							Escolas da Cidade do Recife
+							@tipoNome do Recife
 						</a>
 					</h4>
 				</div>
@@ -33,8 +33,8 @@
 	               <div class="panel-body">
 	                 
 	               	<div class="widget-content" align="center">
-						<iframe src="@routes.MapService.showMapEscolas()" width="100%" height="300px"></iframe><br>
-						<a href="@routes.MapService.showMapEscolas()" target="_blank">Clique AQUI para expandir</a><br>
+						<iframe src="@routes.MapService.showMapEscolas(tipo)" width="100%" height="300px"></iframe><br>
+						<a href="@routes.MapService.showMapEscolas(tipo)" target="_blank">Clique AQUI para expandir</a><br>
 					</div>
 	                 
 		             <div class="widget">

@@ -15,7 +15,7 @@ GET		/financas/:id				controllers.FinancasController.show(id: String)
 
 #Educacao
 GET		/educacao/orcamento			controllers.EducacaoController.orcamento()
-GET		/educacao/escolas			controllers.EducacaoController.escolas()
+GET		/educacao/escolas			controllers.EducacaoController.escolas(id: Long)
 GET		/educacao/escolas/:id		controllers.EducacaoController.showEscola(id: Long)
 
 #Saude
@@ -24,7 +24,7 @@ GET		/saude/unidadessaude/group/:id			controllers.SaudeController.unidadesSaude(
 GET		/saude/unidadessaude/:id		controllers.SaudeController.showUnidadeSaude(id: Long)
 
 #Maps
-GET		/educacao/map				controllers.MapService.showMapEscolas()
+GET		/educacao/map				controllers.MapService.showMapEscolas(id: Long)
 GET		/educacao/map/:id			controllers.MapService.showMapEscola(id: Long)
 
 GET		/saude/map/group/:id		controllers.MapService.showMapUnidadesSaude(id: Long)

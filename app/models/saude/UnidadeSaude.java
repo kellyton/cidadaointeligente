@@ -19,6 +19,8 @@ public class UnidadeSaude {
 	public static final int UNIDADE_BASICA_DE_SAUDE = 7;
 	public static final int UNIDADE_SAUDE_DA_FAMILIA = 8;
 	public static final int UNIDADE_ESPECIALIZADA = 9;
+	public static final int UNIDADE_RAIVA = 10;
+	public static final int UNIDADE_VACINACAO = 11;
 	
 	public static final int TODAS = 99;
 	
@@ -102,6 +104,12 @@ public class UnidadeSaude {
 				break;
 			case UNIDADE_ESPECIALIZADA:
 				this.tipoNome = "Unidade Especializadas";
+				break;
+			case UNIDADE_RAIVA:
+				this.tipoNome = "Unidade de Vacinação e Soro Anti-Rábico";
+				break;
+			case UNIDADE_VACINACAO:
+				this.tipoNome = "Unidade de Vacinação";
 				break;
 		}
 	}

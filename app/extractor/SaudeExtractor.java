@@ -11,21 +11,9 @@ import models.financas.Despesa;
 import models.saude.UnidadeSaude;
 import play.Logger;
 import play.db.jpa.JPA;
+import static models.saude.UnidadeSaude.*;
 
 public class SaudeExtractor {	
-	
-	public static final int ESPECIALIDADE_ODONTOLOGICA = 0;
-	public static final int FARMACIA_DA_FAMILIA = 1;
-	public static final int HOSPITAL = 2 ;
-	public static final int POLICLINICA = 3;
-	public static final int APOIO_DIAGNOSTICO_TERAPEUTICO = 4; //TODO sem localização. ficou de fora
-	public static final int SAUDE_MENTAL = 5;
-	public static final int PRONTO_ATENDIMENTO = 6;
-	public static final int UNIDADE_BASICA_DE_SAUDE = 7;
-	public static final int UNIDADE_SAUDE_DA_FAMILIA = 8;
-	public static final int UNIDADE_ESPECIALIZADA = 9;
-	
-	
 	
 	public void execute(){
 		int results = 0;
@@ -34,7 +22,7 @@ public class SaudeExtractor {
 		
 		String arquivo;
 		
-		arquivo = "./data/saude/ceo.csv";
+		/*arquivo = "./data/saude/ceo.csv";
 		results = processarEspecialidade(arquivo, ESPECIALIDADE_ODONTOLOGICA);
 		System.out.println("Odontologia processada com " + results + " erros.");
 		
@@ -68,6 +56,14 @@ public class SaudeExtractor {
 		
 		arquivo = "./data/saude/usf.csv";
 		results = processarSaudeFamilia(arquivo, UNIDADE_SAUDE_DA_FAMILIA);
+		System.out.println("Odontologia processada com " + results + " erros.");*/
+		
+		arquivo = "./data/saude/unidadesraiva.csv";
+		results = processarVacinacao(arquivo, UNIDADE_RAIVA);
+		System.out.println("Odontologia processada com " + results + " erros.");
+		
+		arquivo = "./data/saude/unidadesvacinacao.csv";
+		results = processarVacinacao(arquivo, UNIDADE_VACINACAO);
 		System.out.println("Odontologia processada com " + results + " erros.");
 		
 		JPA.em().getTransaction().commit();
@@ -376,17 +372,58 @@ public class SaudeExtractor {
 	}
 	
 	
-	private boolean booleanValue(String s){
-		if (s.isEmpty()){
-			return false;
-		} else {
-			if (s.trim().equals("1")){
-				return true;
-			} else {
-				return false;
+	private int processarVacinacao(String arquivo, int tipo) {
+		// TODO Auto-generated method stub
+				
+		BufferedReader br;
+		String line;
+		String fields[];
+		String csvSplitBy = ";";
+		int erros = 0;
+		
+		UnidadeSaude unidade;
+
+		try {
+			
+			Logger.info("Processing file: " + arquivo);
+			
+			br = new BufferedReader(new InputStreamReader(new FileInputStream(arquivo), "UTF8"));
+			
+			//Jump first line
+			line = br.readLine();				
+			
+			while ((line = br.readLine()) != null) {
+				unidade = new UnidadeSaude();
+				fields = line.split(csvSplitBy, -1); 
+				
+				unidade.setRpa(Integer.valueOf(fields[0]));
+				unidade.setUnidade(fields[1]);
+				unidade.setEndereco(fields[2]);
+				unidade.setBairro(fields[3]);
+				unidade.setFone(fields[4]);
+				unidade.setLatitude(fields[5].replace(",", "."));
+				unidade.setLongitude(fields[6].replace(",", "."));
+				unidade.setTipo(tipo);
+				
+				try {
+					JPA.em().persist(unidade);					
+				} catch (Exception ex){
+					Logger.error("Erro salvando unidade " + unidade + ": " + ex.getLocalizedMessage());
+					erros++;
+				}
 			}
+			
+			Logger.info("Success processing " + arquivo);
+			
+			br.close();
+			
+		} catch (Exception e){
+			Logger.error("Erro processando arquivo " + arquivo + ": " + e.getLocalizedMessage());
+			e.printStackTrace();
+			erros++;
 		}
 		
+		return erros;
 	}
 	
 }

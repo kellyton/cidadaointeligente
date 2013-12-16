@@ -6,7 +6,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta charset="utf-8">
   <!-- Title and other stuffs -->
-  <title>Minha Recife</title>
+  <title>Cidadão Recifense</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
   <meta name="keywords" content="">
@@ -29,7 +29,7 @@
   <!-- Main stylesheet -->
   <link href="@routes.Assets.at("css/style.css")" rel="stylesheet">
   <!-- Stylesheet for Color -->
-  <link href="@routes.Assets.at("css/red.css")" rel="stylesheet">
+  <link href="@routes.Assets.at("css/blue.css")" rel="stylesheet">
   
   <link rel="shortcut icon" href="@routes.Assets.at("img/favicon/favicon.png")">
 </head>
@@ -88,7 +88,7 @@
                       <li class="dropdown">
                          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Educação<b class="caret"></b></a>
                          <ul class="dropdown-menu">
-                           <li><a href="@routes.EducacaoController.index()">Orçamento</a></li>
+                           <li><a href="@routes.EducacaoController.orcamento()">Orçamento</a></li>
                            <li><a href="@routes.EducacaoController.escolas()">Escolas</a></li>
                            <li><a href="@routes.EducacaoController.escolas()">Estatísticas (em breve)</a></li>
                          </ul>
@@ -97,17 +97,37 @@
                       <li class="dropdown">
                          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Saúde<b class="caret"></b></a>
                          <ul class="dropdown-menu">
-                           <li><a href="">Orçamento</a></li>
+                           <li><a href="@routes.SaudeController.orcamento()">Orçamento</a></li>
                            <li><a href="">Unidades de Saúde</a></li>
+                           <li><a href="">Vacinação</a></li>
                            <li><a href="">Estatísticas (em breve)</a></li>
                          </ul>
                       </li>
                       
                       <li class="dropdown">
-                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Segurança<b class="caret"></b></a>
+                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Turismo<b class="caret"></b></a>
                          <ul class="dropdown-menu">
-                           <li><a href="">Estatísticas</a></li>
-                           <li><a href="">Detalhamento</a></li>
+                         	<li><a href="">Orçamento</a></li>
+                           <li><a href="">Pontos Turísticos</a></li>
+                           <li><a href="">Estatísticas (em breve)</a></li>
+                         </ul>
+                      </li>
+                      
+                      <li class="dropdown">
+                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Transporte<b class="caret"></b></a>
+                         <ul class="dropdown-menu">
+                         	<li><a href="">Orçamento</a></li>
+                           <li><a href="">Pontos de Transporte</a></li>
+                           <li><a href="">Estatísticas (em breve)</a></li>
+                         </ul>
+                      </li>
+                      
+                      <li class="dropdown">
+                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Limpeza<b class="caret"></b></a>
+                         <ul class="dropdown-menu">
+                         	<li><a href="">Orçamento</a></li>
+                           <li><a href="">Pontos de Coleta Seletiva</a></li>
+                           <li><a href="">Estatísticas (em breve)</a></li>
                          </ul>
                       </li>
                       

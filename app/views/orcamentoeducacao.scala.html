@@ -119,20 +119,21 @@ $(function () {
         },
         
         series: [
+		 { name: 'Orçamento Geral',
+		   	data: [
+		       	@for((desp, index) <- despesaTotal.zipWithIndex){
+		       	['@desp.getAno()', @desp.getValor()],
+		       	}
+		       ]
+		   },                  
+                 
           { name: 'Orçamento da Educação',
         	data: [
              	@for((desp, index) <- despesaAnual.zipWithIndex){
              	['@desp.getAno()', @desp.getValor()],
              	}
                ]
-           } , {
-        	name: 'Orçamento Geral',
-           	data: [
-               	@for((desp, index) <- despesaTotal.zipWithIndex){
-               	['@desp.getAno()', @desp.getValor()],
-               	}
-               ]
-           }
+           } 
         ]
     });
 	

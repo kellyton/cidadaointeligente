@@ -6,16 +6,22 @@
 GET     /                           controllers.Application.index()
 
 #Configurations. MUST be before others
-GET     /financas/configure/:id			controllers.FinancasController.configurar(id: Integer)
-GET     /educacao/configure			controllers.EducacaoController.configurar()
+#GET     /financas/configure/:id			controllers.FinancasController.configurar(id: Integer)
+#GET     /educacao/configure			controllers.EducacaoController.configurar()
+GET     /saude/configure			controllers.SaudeController.configurar()
 
 #Financas
 GET		/financas/:id				controllers.FinancasController.show(id: String)
 
 #Educacao
-GET		/educacao					controllers.EducacaoController.index()
+GET		/educacao/orcamento			controllers.EducacaoController.orcamento()
 GET		/educacao/escolas			controllers.EducacaoController.escolas()
 GET		/educacao/escolas/:id		controllers.EducacaoController.showEscola(id: Long)
+
+#Saude
+GET		/saude/orcamento			controllers.SaudeController.orcamento()
+GET		/saude/hospitais			controllers.SaudeController.hospitais()
+GET		/saude/hospitais/:id		controllers.SaudeController.showHospital(id: Long)
 
 #Maps
 GET		/educacao/map				controllers.MapService.showMapEscolas()

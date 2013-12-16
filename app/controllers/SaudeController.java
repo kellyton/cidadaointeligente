@@ -15,13 +15,13 @@ import play.mvc.Result;
 import services.EducacaoService;
 import services.FinancasService;
 
-public class EducacaoController extends Controller{
+public class SaudeController extends Controller{
 
 	@Transactional
 	public static Result orcamento(){
 		FinancasService financasService = new FinancasService();
 		
-		List<Total> despesaAnual = financasService.getGastos(DESPESA_POR_FUNCAO, "EDUCAÇÃO");
+		List<Total> despesaAnual = financasService.getGastos(DESPESA_POR_FUNCAO, "SAÚDE");
 		List<Total> despesaTotal = financasService.getGastos(DESPESA_TOTAL);
 		
 		double porcentagem;
@@ -33,15 +33,16 @@ public class EducacaoController extends Controller{
 			despesaAnual.get(i).setExtraInfo(new DecimalFormat("##.00").format(porcentagem) + "%");
 		}
 		
-		return ok(views.html.orcamentoeducacao.render(despesaAnual, despesaTotal));
+		return ok(views.html.orcamentosaude.render(despesaAnual, despesaTotal));
 	}
 	
 	@Transactional
-	public static Result escolas(){
-		EducacaoService educacaoService = new EducacaoService();
+	public static Result hospitais(){
+		/*EducacaoService educacaoService = new EducacaoService();
 		
 		List<Escola> escolas = educacaoService.getEscolas();
-		return ok(views.html.escolas.render(escolas));
+		return ok(views.html.escolas.render(escolas));*/
+		return TODO;
 		
 	}
 
@@ -52,9 +53,10 @@ public class EducacaoController extends Controller{
 	 */
 	
 	@Transactional
-	public static Result showEscola(long id){
-		Escola escola = new EducacaoService().getEscola(id);
-		return ok(views.html.escoladetalhe.render(escola));
+	public static Result showHospital(long id){
+		/*Escola escola = new EducacaoService().getEscola(id);
+		return ok(views.html.escoladetalhe.render(escola));*/
+		return TODO;
 	}
 	
 	/**
@@ -63,14 +65,17 @@ public class EducacaoController extends Controller{
 	 */
 	@Transactional
 	public static Result configurar(){
-		Date ini = new Date();
+		/*Date ini = new Date();
 		
 		EducacaoService service = new EducacaoService();
 		service.processar();
 		
 		Date fim = new Date();
 		Logger.info((fim.getTime() - ini.getTime())/1000 + " segundos");
-		return ok("Foi");
+		return ok("Foi");*/
+		return TODO;
 	}
+	
+
 	
 }

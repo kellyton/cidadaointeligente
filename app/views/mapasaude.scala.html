@@ -1,4 +1,4 @@
-@(escolas: List[models.educacao.Escola])
+@(items: List[models.saude.UnidadeSaude])
 
 <!DOCTYPE html>
 <html>
@@ -33,24 +33,27 @@
 			var map = new google.maps.Map(document.getElementById("map-canvas"),
 			mapOptions);
 			     
-			@for((escola, index) <- escolas.zipWithIndex){
+			@for((item, index) <- items.zipWithIndex){
 				var marker@index = new google.maps.Marker({
-					position: new google.maps.LatLng(@escola.getLatitude(), @escola.getLongitude()),
+					position: new google.maps.LatLng(@item.getLatitude(), @item.getLongitude()),
 					map: map,
-					title:"@escola.getNome()"
+					title:"@item.getNome()"
 				});
 			
 				google.maps.event.addListener(marker@index, 'click', function() {
 					infowindow.setContent(						 
-						 '<p><b>@escola.getNome()</b><br>'+
-						 'Endereço: @escola.getEnderecoCompleto()<br>'+
-						 '<a href="@routes.EducacaoController.showEscola(escola.getCodigoEscola())" target="_top">Mais Informações</a></p>'
+						 '<p><b>@item.getNome()</b><br>'+
+						 'Tipo: @item.getTipoNome()<br>' + 
+						 'Especialidades: @item.getEspecialidades<br>' +
+						 'Endereço: @item.getEnderecoCompleto()<br>'+
+						 '<a href="@routes.SaudeController.showUnidadeSaude(item.getId())" target="_top">Mais Informações</a></p>'
 					)
 					infowindow.open(map, marker@index);
 				});
 			}
 			
 			var infowindow = new google.maps.InfoWindow({
+				<!-- content: 'Bla bla bla bla bla' -->
 			});	
 			
 		}

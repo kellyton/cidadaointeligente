@@ -6,6 +6,7 @@ import java.util.List;
 
 import models.Total;
 import models.educacao.Escola;
+import models.saude.UnidadeSaude;
 import static models.Total.*;
 
 import play.Logger;
@@ -14,6 +15,7 @@ import play.mvc.Controller;
 import play.mvc.Result;
 import services.EducacaoService;
 import services.FinancasService;
+import services.SaudeService;
 
 public class SaudeController extends Controller{
 
@@ -37,12 +39,11 @@ public class SaudeController extends Controller{
 	}
 	
 	@Transactional
-	public static Result hospitais(){
-		/*EducacaoService educacaoService = new EducacaoService();
+	public static Result unidadesSaude(){
+		SaudeService service = new SaudeService();
 		
-		List<Escola> escolas = educacaoService.getEscolas();
-		return ok(views.html.escolas.render(escolas));*/
-		return TODO;
+		List<UnidadeSaude> unidades = service.getUnidadesSaude();
+		return ok(views.html.unidadessaude.render(unidades));
 		
 	}
 
@@ -53,10 +54,9 @@ public class SaudeController extends Controller{
 	 */
 	
 	@Transactional
-	public static Result showHospital(long id){
-		/*Escola escola = new EducacaoService().getEscola(id);
-		return ok(views.html.escoladetalhe.render(escola));*/
-		return TODO;
+	public static Result showUnidadeSaude(long id){
+		UnidadeSaude unidade = new SaudeService().getUnidadeSaude(id);
+		return ok(views.html.unidadesaudedetalhe.render(unidade));
 	}
 	
 	/**
@@ -65,15 +65,14 @@ public class SaudeController extends Controller{
 	 */
 	@Transactional
 	public static Result configurar(){
-		/*Date ini = new Date();
+		Date ini = new Date();
 		
-		EducacaoService service = new EducacaoService();
+		SaudeService service = new SaudeService();
 		service.processar();
 		
 		Date fim = new Date();
 		Logger.info((fim.getTime() - ini.getTime())/1000 + " segundos");
-		return ok("Foi");*/
-		return TODO;
+		return ok("Foi");
 	}
 	
 

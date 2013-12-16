@@ -1,8 +1,12 @@
 package models.saude;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+@Entity
 public class UnidadeSaude {
 	
 	public static final int ESPECIALIDADE_ODONTOLOGICA = 0;
@@ -17,6 +21,7 @@ public class UnidadeSaude {
 	public static final int UNIDADE_ESPECIALIZADA = 9;
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	@Column
 	private int tipo;
@@ -34,7 +39,7 @@ public class UnidadeSaude {
 	private String endereco;
 	@Column
 	private String bairro;
-	@Column
+	@Column(columnDefinition="TEXT")
 	private String especialidades;
 	@Column
 	private String fone;
@@ -42,6 +47,8 @@ public class UnidadeSaude {
 	private String latitude;
 	@Column
 	private String longitude;
+	@Column
+	private String extraInfo;
 	
 	public long getId() {
 		return id;
@@ -51,6 +58,14 @@ public class UnidadeSaude {
 	}
 	public int getTipo() {
 		return tipo;
+	}
+	
+	public String getEnderecoCompleto(){
+		return endereco + ", " + bairro;
+	}
+	
+	public String getNome(){
+		return unidade;
 	}
 	
 	public void setTipo(int tipo){
@@ -147,18 +162,27 @@ public class UnidadeSaude {
 		this.fone = fone;
 	}
 	public String getLatitude() {
-		return latitude;
+		return latitude.replace(",", ".");
 	}
 	public void setLatitude(String latitude) {
 		this.latitude = latitude;
 	}
 	public String getLongitude() {
-		return longitude;
+		return longitude.replace(",", ".");
 	}
 	public void setLongitude(String longitude) {
 		this.longitude = longitude;
 	}
-	
+	public String getExtraInfo() {
+		return extraInfo;
+	}
+	public void setExtraInfo(String extraInfo) {
+		this.extraInfo = extraInfo;
+	}
+	@Override
+	public String toString(){
+		return unidade + " - " + bairro;
+	}
 	//private String tipoUnidade;//Apoio diagnóstico e terapia
 	//natureza - conveniado ou proprio - hospitais
 	

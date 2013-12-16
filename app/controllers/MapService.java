@@ -17,9 +17,11 @@ package controllers;
 import java.util.List;
 
 import models.educacao.Escola;
+import models.saude.UnidadeSaude;
 import play.db.jpa.Transactional;
 import play.mvc.*;
 import services.EducacaoService;
+import services.SaudeService;
 
 public class MapService extends Controller {
 	
@@ -33,5 +35,17 @@ public class MapService extends Controller {
 	public static Result showMapEscola(long id){
 		Escola escola = new EducacaoService().getEscola(id);
 		return ok(views.html.mapaescolaindividual.render(escola));
+	}
+	
+	@Transactional
+	public static Result showMapUnidadesSaude(){
+		List<UnidadeSaude> unidades = new SaudeService().getUnidadesSaude();
+		return ok(views.html.mapasaude.render(unidades));
+	}
+	
+	@Transactional
+	public static Result showMapUnidadeSaude(long id){
+		UnidadeSaude unidade = new SaudeService().getUnidadeSaude(id);
+		return ok(views.html.mapasaudeindividual.render(unidade));
 	}
 }

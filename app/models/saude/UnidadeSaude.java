@@ -13,12 +13,14 @@ public class UnidadeSaude {
 	public static final int FARMACIA_DA_FAMILIA = 1;
 	public static final int HOSPITAL = 2 ;
 	public static final int POLICLINICA = 3;
-	public static final int APOIO_DIAGNOSTICO_TERAPEUTICO = 4;
+	public static final int APOIO_DIAGNOSTICO_TERAPEUTICO = 4;//não está sendo incluído
 	public static final int SAUDE_MENTAL = 5;
 	public static final int PRONTO_ATENDIMENTO = 6;
 	public static final int UNIDADE_BASICA_DE_SAUDE = 7;
 	public static final int UNIDADE_SAUDE_DA_FAMILIA = 8;
 	public static final int UNIDADE_ESPECIALIZADA = 9;
+	
+	public static final int TODAS = 99;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -96,10 +98,10 @@ public class UnidadeSaude {
 				this.tipoNome = "Unidade Básicas de Saúde (UBS)";
 				break;
 			case UNIDADE_SAUDE_DA_FAMILIA:
-				this.tipoNome = "Unidades Saúde da Família (USF)";
+				this.tipoNome = "Unidade de Saúde da Família (USF)";
 				break;
 			case UNIDADE_ESPECIALIZADA:
-				this.tipoNome = "Unidades Especializadas";
+				this.tipoNome = "Unidade Especializadas";
 				break;
 		}
 	}

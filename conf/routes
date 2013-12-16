@@ -8,7 +8,7 @@ GET     /                           controllers.Application.index()
 #Configurations. MUST be before others
 #GET     /financas/configure/:id			controllers.FinancasController.configurar(id: Integer)
 #GET     /educacao/configure			controllers.EducacaoController.configurar()
-GET     /saude/configure			controllers.SaudeController.configurar()
+#GET     /saude/configure			controllers.SaudeController.configurar()
 
 #Financas
 GET		/financas/:id				controllers.FinancasController.show(id: String)
@@ -20,15 +20,15 @@ GET		/educacao/escolas/:id		controllers.EducacaoController.showEscola(id: Long)
 
 #Saude
 GET		/saude/orcamento			controllers.SaudeController.orcamento()
-GET		/saude/unidadessaude			controllers.SaudeController.unidadesSaude()
+GET		/saude/unidadessaude/group/:id			controllers.SaudeController.unidadesSaude(id: Long)
 GET		/saude/unidadessaude/:id		controllers.SaudeController.showUnidadeSaude(id: Long)
 
 #Maps
 GET		/educacao/map				controllers.MapService.showMapEscolas()
 GET		/educacao/map/:id			controllers.MapService.showMapEscola(id: Long)
 
-GET		/saude/map				controllers.MapService.showMapUnidadesSaude()
-GET		/saude/map/:id			controllers.MapService.showMapUnidadeSaude(id: Long)
+GET		/saude/map/group/:id		controllers.MapService.showMapUnidadesSaude(id: Long)
+GET		/saude/map/:id				controllers.MapService.showMapUnidadeSaude(id: Long)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

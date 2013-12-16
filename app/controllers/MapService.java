@@ -38,8 +38,8 @@ public class MapService extends Controller {
 	}
 	
 	@Transactional
-	public static Result showMapUnidadesSaude(){
-		List<UnidadeSaude> unidades = new SaudeService().getUnidadesSaude();
+	public static Result showMapUnidadesSaude(long id){
+		List<UnidadeSaude> unidades = new SaudeService().getUnidadesSaude(id);
 		return ok(views.html.mapasaude.render(unidades));
 	}
 	

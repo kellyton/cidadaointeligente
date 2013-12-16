@@ -8,6 +8,7 @@ import models.Total;
 import models.educacao.Escola;
 import models.saude.UnidadeSaude;
 import static models.Total.*;
+import static models.saude.UnidadeSaude.*;
 
 import play.Logger;
 import play.db.jpa.Transactional;
@@ -39,14 +40,21 @@ public class SaudeController extends Controller{
 	}
 	
 	@Transactional
-	public static Result unidadesSaude(){
+	public static Result unidadesSaude(long tipo){
 		SaudeService service = new SaudeService();
 		
-		List<UnidadeSaude> unidades = service.getUnidadesSaude();
-		return ok(views.html.unidadessaude.render(unidades));
+		List<UnidadeSaude> todas = service.getUnidadesSaude(tipo);
 		
+		String tipoNome;
+		if (tipo == TODAS){
+			tipoNome = "Todas unidades de saúde";
+		} else {
+			tipoNome = todas.get(1).getTipoNome();
+		}
+			
+		return ok(views.html.unidadessaude.render(tipoNome, tipo, todas));
 	}
-
+	
 	/**
 	 * Show details of escola id
 	 * @param id

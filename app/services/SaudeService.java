@@ -9,21 +9,33 @@ import play.db.jpa.Transactional;
 import extractor.EducacaoExtractor;
 import extractor.SaudeExtractor;
 
+import static models.saude.UnidadeSaude.*;
 
 public class SaudeService {
 
 	public void processar() {
 		new SaudeExtractor().execute();
-		
 	}
-
+	
 	@Transactional
-	public List<UnidadeSaude> getUnidadesSaude(){
-		String query = "FROM UnidadeSaude ORDER BY unidade ASC";
+	public List<UnidadeSaude> getUnidadesSaude(long tipo){
 		
-		List<UnidadeSaude> list = JPA.em().createQuery(query)
-				.getResultList();
-		return list;
+		if (tipo == TODAS) {
+			String query = "FROM UnidadeSaude ORDER BY unidade ASC";
+			List<UnidadeSaude> list = JPA.em().createQuery(query)
+					.getResultList();
+			
+			return list;
+		} else {
+			int nTipo = (int)tipo;
+			String query = "FROM UnidadeSaude WHERE tipo = :tipo ORDER BY unidade ASC";
+			List<UnidadeSaude> list = JPA.em().createQuery(query)
+					.setParameter("tipo", nTipo)
+					.getResultList();
+			
+			return list;
+		}
+		
 	}
 
 	public UnidadeSaude getUnidadeSaude(long id) {

@@ -97,10 +97,20 @@
                       <li class="dropdown">
                          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Saúde<b class="caret"></b></a>
                          <ul class="dropdown-menu">
-                           <li><a href="@routes.SaudeController.orcamento()">Orçamento</a></li>
-                           <li><a href="@routes.SaudeController.unidadesSaude()">Unidades de Saúde</a></li>
-                           <li><a href="">Vacinação (em breve)</a></li>
-                           <li><a href="">Estatísticas (em breve)</a></li>
+                           <li><a href="@routes.SaudeController.orcamento()">+ Orçamento</a></li>
+                           <li><a href="@routes.SaudeController.unidadesSaude(99)">+ Unidades de Saúde (todas)</a></li>
+                           <li><a href="@routes.SaudeController.unidadesSaude(0)"> - Centros Odontológicos</a></li>
+                           <li><a href="@routes.SaudeController.unidadesSaude(1)"> - Farmácias da Família</a></li>
+                           <li><a href="@routes.SaudeController.unidadesSaude(2)"> - Hospitais</a></li>
+                           <li><a href="@routes.SaudeController.unidadesSaude(3)"> - Policlínicas</a></li>
+                           <li><a href="@routes.SaudeController.unidadesSaude(5)"> - Centros de Saúde Mental</a></li>
+                           <li><a href="@routes.SaudeController.unidadesSaude(6)"> - Pronto Atendimento</a></li>
+                           <li><a href="@routes.SaudeController.unidadesSaude(7)"> - Unidades Básicas de Saúde</a></li>
+                           <li><a href="@routes.SaudeController.unidadesSaude(8)"> - Unidades de Saúde da Família</a></li>
+                           <li><a href="@routes.SaudeController.unidadesSaude(9)"> - Unidades Especializadas</a></li>
+                           
+                           <li><a href="">+ Vacinação (em breve)</a></li>
+                           <li><a href="">+ Estatísticas (em breve)</a></li>
                          </ul>
                       </li>
                       

@@ -67,7 +67,7 @@ public class SaudeExtractor {
 		results = processarVacinacao(arquivo, UNIDADE_VACINACAO);
 		System.out.println("Processada com " + results + " erros.");
 		
-		arquivo = arquivo = "./data/saude/calendariovacinas.csv";
+		arquivo = "./data/saude/calendariovacinas.csv";
 		results = processaCalendarioVacinacao(arquivo, UNIDADE_VACINACAO);
 		System.out.println("Processada com " + results + " erros.");
 		

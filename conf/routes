@@ -4,6 +4,7 @@
 
 # Home page
 GET     /                           controllers.Application.index()
+POST    /                           controllers.Application.cadastraEmail()
 
 #Configurations. MUST be before others
 #GET     /financas/configure/:id			controllers.FinancasController.configurar(id: Integer)
@@ -19,6 +20,8 @@ GET		/educacao/escolas			controllers.EducacaoController.escolas(id: Long)
 GET		/educacao/escolas/:id		controllers.EducacaoController.showEscola(id: Long)
 
 #Saude
+GET		/saude/vacinacao			controllers.SaudeController.vacinacao()
+POST	/saude/vacinacao			controllers.SaudeController.cadastraEmailVacina()
 GET		/saude/orcamento			controllers.SaudeController.orcamento()
 GET		/saude/unidadessaude/group/:id			controllers.SaudeController.unidadesSaude(id: Long)
 GET		/saude/unidadessaude/:id		controllers.SaudeController.showUnidadeSaude(id: Long)

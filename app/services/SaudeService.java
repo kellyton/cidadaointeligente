@@ -4,6 +4,7 @@ import java.util.List;
 
 import models.educacao.Escola;
 import models.saude.UnidadeSaude;
+import models.saude.Vacina;
 import play.db.jpa.JPA;
 import play.db.jpa.Transactional;
 import extractor.EducacaoExtractor;
@@ -42,6 +43,11 @@ public class SaudeService {
 		return (UnidadeSaude)JPA.em().createQuery("FROM UnidadeSaude WHERE id = :id")
 				.setParameter("id", id)
 				.getSingleResult();
+	}
+
+	public List<Vacina> getVacinas() {
+		return JPA.em().createQuery("FROM Vacina ORDER BY 1 ASC")
+				.getResultList();
 	}
 	
 }

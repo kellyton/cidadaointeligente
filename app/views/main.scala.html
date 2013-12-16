@@ -100,6 +100,7 @@
                          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Saúde<b class="caret"></b></a>
                          <ul class="dropdown-menu">
                            <li><a href="@routes.SaudeController.orcamento()">+ Orçamento</a></li>
+                           <li><a href="@routes.SaudeController.vacinacao()">+ Vacinação</a></li>
                            <li><a href="@routes.SaudeController.unidadesSaude(99)">+ Unidades de Saúde (todas)</a></li>
                            <li><a href="@routes.SaudeController.unidadesSaude(0)"> - Centros Odontológicos</a></li>
                            <li><a href="@routes.SaudeController.unidadesSaude(1)"> - Farmácias da Família</a></li>
@@ -112,9 +113,6 @@
                            <li><a href="@routes.SaudeController.unidadesSaude(9)"> - Unidades Especializadas</a></li>
                            <li><a href="@routes.SaudeController.unidadesSaude(11)"> - Unidades de Vacinação</a></li>
                            <li><a href="@routes.SaudeController.unidadesSaude(10)"> - Vacinação contra Raiva</a></li>
-                           
-                           <li><a href="">+ Vacinação</a></li>
-                           
                            
                            <li><a href="">+ Estatísticas (em breve)</a></li>
                          </ul>
@@ -172,14 +170,20 @@
   <div class="row">
     <div class="col-md-12">
       <div class="well">
-               <h5>Deseja se manter informado?</h5>
+      			@if(flash.containsKey("message")) {
+				 <div class="alert-message error">
+				 	<strong><h5><i>@flash.get("message")</i></h5></strong> 
+				 </div>
+				 }
+				 
+               <h5>Estamos trabalhando constantemente!!!</h5>
                <p>Para se manter informado sobre atualizações no site, coloque abaixo seu nome e e-mail. Enviaremos no máximo 1 e-mail por semana.</p>
-               <form class="form-inline" role="form">
+               <form class="form-inline" role="form" method="post" action="@routes.Application.cadastraEmail()">
                  <div class="form-group">
-                   <input type="text" class="form-control" id="name" placeholder="Enter name">
+                   <input type="text" class="form-control" id="name" name="nome" placeholder="Nome">
                  </div>
                  <div class="form-group">
-                   <input type="email" class="form-control" id="email" placeholder="Enter email">
+                   <input type="email" class="form-control" id="email" name="email" placeholder="E-mail">
                  </div>
                  <button type="submit" class="btn btn-default">Enviar</button>
                </form>

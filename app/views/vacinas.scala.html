@@ -1,0 +1,101 @@
+@(vacinas: List[models.saude.Vacina])
+
+@content = {
+
+<div class="page-head">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h3>Vacinação</h3>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="content">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+         <div class="panel-group" id="accordion">
+           
+           @************Primeira parte *@
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+							Calendário de Vacinação
+						</a>
+					</h4>
+				</div>
+				
+				<div id="collapse1" class="panel-collapse in" style="height: auto;">
+	               <div class="panel-body">
+
+					 <div class="container newsletter">
+						 <div class="row">
+							 @if(flash.containsKey("message")) {
+							 <div class="alert-message error">
+							 	<strong>@flash.get("message")</strong> 
+							 </div>
+							 }
+						     <div class="well">
+						              <h5>Deseja ser lembrado da vacina dos seus filhos?</h5>
+						              <p>Para ser informado por e-mail na época de tomar suas vacinas, informe abaixo
+						              o nome, e-mail e sua data de nacimento e de seus dependentes.</p>
+						              <form class="form-inline" role="form" method="post" action="@routes.SaudeController.cadastraEmailVacina()">
+						                <div class="form-group">
+						                  <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome">
+						                </div>
+						                <div class="form-group">
+						                  <input type="email" class="form-control" id="email" name="email" placeholder="E-mail">
+						                </div>
+						                <div class="form-group">
+						                  <input type="date" class="form-control" id="nascimento" name="nascimento" placeholder="01/01/2001">
+						                </div>
+						                <button type="submit" class="btn btn-default">Enviar</button>
+						              </form>
+						       <p>Enviaremos um e-mail 1 ou 2 dias antes da data que deverá tomar a vacina. Esta funcionalidade
+						       é experimental, não deixe de ter em mãos o seu cartão de vacinação e o dos seus filhos.</a></p>
+						     </div>
+						 </div>
+					 </div>
+	                 
+		             <div class="widget">
+		                <div class="widget-content" style="display: block;">
+							<table class="table table-striped table-bordered table-hover">
+								<thead>
+									<tr>
+										<th>Idade</th>
+										<th>Vacina</th>
+										<th>Proteção</th>
+										<th>Dose</th>
+									</tr>
+								</thead>
+			                    <tbody>
+			                    	@for((vac, index) <- vacinas.zipWithIndex){
+				                    <tr>
+				                      <td>@vac.getIdade()</td>
+				                      <td>@vac.getVacina()</td>
+				                      <td>@vac.getDoenca_protecao()</td>
+				                      <td>@vac.getDose()</td>
+				                    </tr>
+				                    }
+								</tbody>
+							</table>
+		                </div>
+		              </div>
+	                 
+	               </div>
+	             </div>
+			</div>
+         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+}
+
+@main(content)

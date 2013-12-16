@@ -9,6 +9,7 @@ import models.Total;
 import models.educacao.Escola;
 import models.financas.Despesa;
 import models.saude.UnidadeSaude;
+import models.saude.Vacina;
 import play.Logger;
 import play.db.jpa.JPA;
 import static models.saude.UnidadeSaude.*;
@@ -24,47 +25,51 @@ public class SaudeExtractor {
 		
 		/*arquivo = "./data/saude/ceo.csv";
 		results = processarEspecialidade(arquivo, ESPECIALIDADE_ODONTOLOGICA);
-		System.out.println("Odontologia processada com " + results + " erros.");
+		System.out.println("Processada com " + results + " erros.");
 		
 		arquivo = "./data/saude/farmacia-da-familia.csv";
 		results = processarBasico(arquivo, FARMACIA_DA_FAMILIA);
-		System.out.println("Odontologia processada com " + results + " erros.");
+		System.out.println("Processada com " + results + " erros.");
 		
 		arquivo = "./data/saude/hospitais.csv";
 		results = processarHospital(arquivo, HOSPITAL);
-		System.out.println("Odontologia processada com " + results + " erros.");
+		System.out.println("Processada com " + results + " erros.");
 		
 		arquivo = "./data/saude/policlinicas.csv";
 		results = processarEspecialidade2(arquivo, POLICLINICA);
-		System.out.println("Odontologia processada com " + results + " erros.");
+		System.out.println("Processada com " + results + " erros.");
 		
 		arquivo = "./data/saude/saudemental.csv";
 		results = processarBasico(arquivo, SAUDE_MENTAL);
-		System.out.println("Odontologia processada com " + results + " erros.");
+		System.out.println("Processada com " + results + " erros.");
 		
 		arquivo = "./data/saude/servicodeprontoatendimento.csv";
 		results = processarEspecialidade2(arquivo, PRONTO_ATENDIMENTO);
-		System.out.println("Odontologia processada com " + results + " erros.");
+		System.out.println("Processada com " + results + " erros.");
 		
 		arquivo = "./data/saude/ubs.csv";
 		results = processarEspecialidade2(arquivo, UNIDADE_BASICA_DE_SAUDE);
-		System.out.println("Odontologia processada com " + results + " erros.");
+		System.out.println("Processada com " + results + " erros.");
 		
 		arquivo = "./data/saude/unidades-especializadas.csv";
 		results = processarBasico(arquivo, UNIDADE_ESPECIALIZADA);
-		System.out.println("Odontologia processada com " + results + " erros.");
+		System.out.println("Processada com " + results + " erros.");
 		
 		arquivo = "./data/saude/usf.csv";
 		results = processarSaudeFamilia(arquivo, UNIDADE_SAUDE_DA_FAMILIA);
-		System.out.println("Odontologia processada com " + results + " erros.");*/
+		System.out.println("Processada com " + results + " erros.");*/
 		
 		arquivo = "./data/saude/unidadesraiva.csv";
 		results = processarVacinacao(arquivo, UNIDADE_RAIVA);
-		System.out.println("Odontologia processada com " + results + " erros.");
+		System.out.println("Processada com " + results + " erros.");
 		
 		arquivo = "./data/saude/unidadesvacinacao.csv";
 		results = processarVacinacao(arquivo, UNIDADE_VACINACAO);
-		System.out.println("Odontologia processada com " + results + " erros.");
+		System.out.println("Processada com " + results + " erros.");
+		
+		arquivo = arquivo = "./data/saude/calendariovacinas.csv";
+		results = processaCalendarioVacinacao(arquivo, UNIDADE_VACINACAO);
+		System.out.println("Processada com " + results + " erros.");
 		
 		JPA.em().getTransaction().commit();
 		JPA.em().getTransaction().begin();
@@ -381,7 +386,7 @@ public class SaudeExtractor {
 		String csvSplitBy = ";";
 		int erros = 0;
 		
-		UnidadeSaude unidade;
+		UnidadeSaude unidade = null;
 
 		try {
 			
@@ -393,22 +398,77 @@ public class SaudeExtractor {
 			line = br.readLine();				
 			
 			while ((line = br.readLine()) != null) {
-				unidade = new UnidadeSaude();
-				fields = line.split(csvSplitBy, -1); 
-				
-				unidade.setRpa(Integer.valueOf(fields[0]));
-				unidade.setUnidade(fields[1]);
-				unidade.setEndereco(fields[2]);
-				unidade.setBairro(fields[3]);
-				unidade.setFone(fields[4]);
-				unidade.setLatitude(fields[5].replace(",", "."));
-				unidade.setLongitude(fields[6].replace(",", "."));
-				unidade.setTipo(tipo);
-				
 				try {
+					unidade = new UnidadeSaude();
+					fields = line.split(csvSplitBy, -1); 
+					
+					unidade.setRpa(Integer.valueOf(fields[0]));
+					unidade.setUnidade(fields[1]);
+					unidade.setEndereco(fields[2]);
+					unidade.setBairro(fields[3]);
+					unidade.setFone(fields[4]);
+					unidade.setLatitude(fields[5].replace(",", "."));
+					unidade.setLongitude(fields[6].replace(",", "."));
+					unidade.setTipo(tipo);
+				
+				
 					JPA.em().persist(unidade);					
 				} catch (Exception ex){
 					Logger.error("Erro salvando unidade " + unidade + ": " + ex.getLocalizedMessage());
+					erros++;
+				}
+			}
+			
+			Logger.info("Success processing " + arquivo);
+			
+			br.close();
+			
+		} catch (Exception e){
+			Logger.error("Erro processando arquivo " + arquivo + ": " + e.getLocalizedMessage());
+			e.printStackTrace();
+			erros++;
+		}
+		
+		return erros;
+	}
+	
+	private int processaCalendarioVacinacao(String arquivo, int tipo) {
+		// TODO Auto-generated method stub
+				
+		BufferedReader br;
+		String line;
+		String fields[];
+		String csvSplitBy = ";";
+		int erros = 0;
+		
+		Vacina vacina;
+
+		try {
+			
+			Logger.info("Processing file: " + arquivo);
+			
+			br = new BufferedReader(new InputStreamReader(new FileInputStream(arquivo), "UTF8"));
+			
+			//Jump first line
+			line = br.readLine();				
+			
+			//idade;vacina;doenca_protecao;dose;dose_qtd;via_administracao
+			
+			while ((line = br.readLine()) != null) {
+				vacina = new Vacina();
+				fields = line.split(csvSplitBy, -1); 
+				
+				vacina.setIdade(fields[0]);
+				vacina.setVacina(fields[1]);
+				vacina.setDoenca_protecao(fields[2]);
+				vacina.setDose(fields[3]);
+				vacina.setDose_qtd(fields[4]);
+				vacina.setVia_administracao(fields[5]);
+				
+				try {
+					JPA.em().persist(vacina);					
+				} catch (Exception ex){
+					Logger.error("Erro salvando vacina " + vacina + ": " + ex.getLocalizedMessage());
 					erros++;
 				}
 			}

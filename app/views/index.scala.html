@@ -13,7 +13,11 @@
           <div class="onethree-right">
             <!-- Title and meta -->
             <h5><a href="#">Orçamento</a></h5>
-            <p class="meta">Veja como é gasto o orçamento da nossa cidade</p>
+            <p class="meta">Veja como é gasto o orçamento da nossa cidade! Veja o 
+            <a href="@routes.FinancasController.showCompareOrcamentoAnual()">comparativo 
+            anual das despesas</a>, ou a <a href="@routes.FinancasController.show("2013")">
+            despesa do ano detalhada</a>, como o <a href="@routes.FinancasController.show("2013")">de 2013</a>
+             ou <a href="@routes.FinancasController.show("2012")">de 2012</p>
           </div>
           <div class="clearfix"></div>
         </div>
@@ -25,7 +29,11 @@
           </div>
           <div class="onethree-right">
             <h5><a href="#">Educação</a></h5>
-            <p class="meta">Localize as escolas e os índices de educação do Recife</p>
+            <p class="meta">Veja o <a href="@routes.EducacaoController.orcamento()">
+            Orçamento da Educação</a>, 
+            localize as <a href="@routes.EducacaoController.escolas(1)">Escolas</a> e 
+            as <a href="@routes.EducacaoController.escolas(2)">Creches </a> próximas a você 
+            e veja o detalhamento de cada uma (laboratório de informática e de ciências, biblioteca, etc)</p>
           </div>
           <div class="clearfix"></div>   
         </div>     
@@ -37,7 +45,11 @@
           </div>
           <div class="onethree-right">
             <h5><a href="#">Saúde</a></h5>
-            <p class="meta">Visualize os dados de educação, localize hospitais e serviços disponíveis para o seu atendimento</p>
+            <p class="meta">Veja o <a href="@routes.SaudeController.orcamento()">Orçamento 
+            da saúde</a>, informe seu nascimento e <a href="@routes.SaudeController.vacinacao()">
+            receba lembretes de vacinação </a>, e Localize 
+            <a href="@routes.SaudeController.unidadesSaude(99)">unidades de saúde, clínicas e hospitais</a>
+             perto de você.</p>
           </div>
           <div class="clearfix"></div>  
         </div>      

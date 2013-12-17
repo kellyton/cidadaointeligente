@@ -18,6 +18,10 @@ public class Application extends Controller {
         return ok(index.render());
     }
     
+    public static Result sobre(){
+		return ok(views.html.sobre.render());
+	} 
+    
 	@Transactional
 	public static Result cadastraEmail(){
 		DynamicForm dynamicForm = form().bindFromRequest();

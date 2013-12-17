@@ -8,11 +8,11 @@
         <div class="onethree">
           <div class="onethree-left">
             <!-- Font awesome icon -->
-            <div class="img"><i class="icon-cloud"></i></div>
+            <div class="img"><i class="icon-money"></i></div>
           </div>
           <div class="onethree-right">
             <!-- Title and meta -->
-            <h5><a href="#">Orçamento</a></h5>
+            <h5><a href="@routes.FinancasController.showCompareOrcamentoAnual()">Orçamento</a></h5>
             <p class="meta">Veja como é gasto o orçamento da nossa cidade! Veja o 
             <a href="@routes.FinancasController.showCompareOrcamentoAnual()">comparativo 
             anual das despesas</a>, ou a <a href="@routes.FinancasController.show("2013")">
@@ -25,10 +25,10 @@
       <div class="col-md-4 col-sm-4">
         <div class="onethree">
           <div class="onethree-left">
-            <div class="img"><i class="icon-gift"></i></div>
+            <div class="img"><i class="icon-edit"></i></div>
           </div>
           <div class="onethree-right">
-            <h5><a href="#">Educação</a></h5>
+            <h5><a href="@routes.EducacaoController.escolas(1)">Educação</a></h5>
             <p class="meta">Veja o <a href="@routes.EducacaoController.orcamento()">
             Orçamento da Educação</a>, 
             localize as <a href="@routes.EducacaoController.escolas(1)">Escolas</a> e 
@@ -41,10 +41,10 @@
       <div class="col-md-4 col-sm-4">
         <div class="onethree">
           <div class="onethree-left">
-            <div class="img"><i class="icon-home"></i></div>
+            <div class="img"><i class="icon-plus-sign"></i></div>
           </div>
           <div class="onethree-right">
-            <h5><a href="#">Saúde</a></h5>
+            <h5><a href="@routes.SaudeController.unidadesSaude(99)">Saúde</a></h5>
             <p class="meta">Veja o <a href="@routes.SaudeController.orcamento()">Orçamento 
             da saúde</a>, informe seu nascimento e <a href="@routes.SaudeController.vacinacao()">
             receba lembretes de vacinação </a>, e Localize 

@@ -9,9 +9,10 @@ POST    /                           controllers.Application.cadastraEmail()
 #Configurations. MUST be before others
 #GET     /financas/configure/:id			controllers.FinancasController.configurar(id: Integer)
 #GET     /educacao/configure			controllers.EducacaoController.configurar()
-GET     /saude/configure			controllers.SaudeController.configurar()
+#GET     /saude/configure			controllers.SaudeController.configurar()
 
 #Financas
+GET		/financas					controllers.FinancasController.showCompareOrcamentoAnual()
 GET		/financas/:id				controllers.FinancasController.show(id: String)
 
 #Educacao

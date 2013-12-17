@@ -1,0 +1,381 @@
+@(total: List[Total])(d1: List[Total])(d2: List[Total])(d3: List[Total])(d4: List[Total])(d5: List[Total])(d6: List[Total])(d7: List[Total])(d8: List[Total])(d9: List[Total])(d10: List[Total])(d11: List[Total])(d12: List[Total])(d13: List[Total])(d14: List[Total])(d15: List[Total])(d16: List[Total])(d17: List[Total])
+
+@content = {
+
+<div class="page-head">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h3>Comparativo do orçamento anual do Recife</h3>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="content">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+         <div class="panel-group" id="accordion">
+           
+           @************Primeira parte *@
+			<div class="panel panel-default">
+				<div class="panel-heading">
+	               <h4 class="panel-title">
+	                 <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+	                   Orçamento Anual do Recife - Valores Anuais
+	                 </a>
+	               </h4>
+	             </div>
+	             <div id="collapse1" class="panel-collapse in" style="height: auto;">
+	               <div class="panel-body">
+	                 
+	                 <div class="widget-content" align="center">
+						<div id="graficoOrcamento"></div>
+						* Clique no nome do ítem na legenda para retira-lo ou reinseri-lo no gráfico.
+					</div>
+	                 
+	                @***** Tabela *@ 
+		            <div class="widget">
+		                <div class="widget-content" style="display: block;">
+							<table class="table table-striped table-bordered table-hover">
+								<thead>
+									<tr>
+										<th>Função</th>
+										<th>2002</th>
+										<th>2003</th>
+										<th>2004</th>
+										<th>2005</th>
+										<th>2006</th>
+										<th>2007</th>
+										<th>2008</th>
+										<th>2009</th>
+										<th>2010</th>
+										<th>2011</th>
+										<th>2012</th>
+										<th>2013</th>
+									</tr>
+								</thead>
+			                    <tbody>
+			                    	
+				                    <tr>
+				                      <td>@d1.get(1).getNome()</td>
+				                      @for((desp, index) <- d1.zipWithIndex){
+				                      <td>@desp.getExtraInfo()</td>
+				                      }
+				                    </tr>
+				                    <tr>
+				                      <td>@d2.get(1).getNome()</td>
+				                      @for((desp, index) <- d2.zipWithIndex){
+				                      <td>@desp.getExtraInfo()</td>
+				                      }
+				                    </tr>
+				                    <tr>
+				                      <td>@d3.get(1).getNome()</td>
+				                      @for((desp, index) <- d3.zipWithIndex){
+				                      <td>@desp.getExtraInfo()</td>
+				                      }
+				                    </tr>
+				                    <tr>
+				                      <td>@d4.get(1).getNome()</td>
+				                      @for((desp, index) <- d4.zipWithIndex){
+				                      <td>@desp.getExtraInfo()</td>
+				                      }
+				                    </tr>
+				                    <tr>
+				                      <td>@d5.get(1).getNome()</td>
+				                      @for((desp, index) <- d5.zipWithIndex){
+				                      <td>@desp.getExtraInfo()</td>
+				                      }
+				                    </tr>
+				                    <tr>
+				                      <td>@d6.get(1).getNome()</td>
+				                      @for((desp, index) <- d6.zipWithIndex){
+				                      <td>@desp.getExtraInfo()</td>
+				                      }
+				                    </tr>
+				                    <tr>
+				                      <td>@d7.get(1).getNome()</td>
+				                      @for((desp, index) <- d7.zipWithIndex){
+				                      <td>@desp.getExtraInfo()</td>
+				                      }
+				                    </tr>
+				                    <tr>
+				                      <td>@d8.get(1).getNome()</td>
+				                      @for((desp, index) <- d8.zipWithIndex){
+				                      <td>@desp.getExtraInfo()</td>
+				                      }
+				                    </tr>
+				                    <tr>
+				                      <td>@d9.get(1).getNome()</td>
+				                      @for((desp, index) <- d9.zipWithIndex){
+				                      <td>@desp.getExtraInfo()</td>
+				                      }
+				                    </tr>
+				                    <tr>
+				                      <td>@d10.get(1).getNome()</td>
+				                      @for((desp, index) <- d10.zipWithIndex){
+				                      <td>@desp.getExtraInfo()</td>
+				                      }
+				                    </tr>
+				                    <tr>
+				                      <td>@d11.get(1).getNome()</td>
+				                      @for((desp, index) <- d11.zipWithIndex){
+				                      <td>@desp.getExtraInfo()</td>
+				                      }
+				                    </tr>
+				                    <tr>
+				                      <td>@d12.get(1).getNome()</td>
+				                      @for((desp, index) <- d12.zipWithIndex){
+				                      <td>@desp.getExtraInfo()</td>
+				                      }
+				                    </tr>
+				                    <tr>
+				                      <td>@d13.get(1).getNome()</td>
+				                      @for((desp, index) <- d13.zipWithIndex){
+				                      <td>@desp.getExtraInfo()</td>
+				                      }
+				                    </tr>
+				                    <tr>
+				                      <td>@d14.get(1).getNome()</td>
+				                      @for((desp, index) <- d14.zipWithIndex){
+				                      <td>@desp.getExtraInfo()</td>
+				                      }
+				                    </tr>
+				                    <tr>
+				                      <td>@d15.get(1).getNome()</td>
+				                      @for((desp, index) <- d15.zipWithIndex){
+				                      <td>@desp.getExtraInfo()</td>
+				                      }
+				                    </tr>
+				                    <tr>
+				                      <td>@d16.get(1).getNome()</td>
+				                      @for((desp, index) <- d16.zipWithIndex){
+				                      <td>@desp.getExtraInfo()</td>
+				                      }
+				                    </tr>
+				                    <tr>
+				                      <td>@d17.get(1).getNome()</td>
+				                      @for((desp, index) <- d17.zipWithIndex){
+				                      <td>@desp.getExtraInfo()</td>
+				                      }
+				                    </tr>
+								</tbody>
+							</table>
+		                </div>
+		              </div>
+	                 
+	               </div>
+	             </div>
+			</div>
+         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+(function($){ // encapsulate jQuery
+
+$(function () {
+		
+	$('#graficoOrcamento').highcharts({
+		chart: {
+            @* type: 'column',
+            margin: [ 10, 10, 100, 80] *@
+        },
+        
+        title: {
+            text: ''
+        },
+        
+        xAxis: {
+            categories: [
+			@for((desp, index) <- total.zipWithIndex){
+				@if(index != total.size()-1){
+					'@desp.getAno()',
+				} else {
+					'@desp.getAno()'
+				}
+			}
+			],
+        
+	        labels: {
+	            rotation: -45,
+	            align: 'right',
+	            style: {
+	                fontSize: '9px',
+	                fontFamily: 'Verdana, sans-serif'
+	            }
+	        }
+        },
+        legend: {
+        	 layout: 'vertical',
+             align: 'right',
+             verticalAlign: 'middle',
+             borderWidth: 0
+        },
+        tooltip: {
+            pointFormat: 'R$ {point.y:.1f}',
+        },
+        
+        series: [
+		 { name: 'Orçamento Geral',
+		   	data: [
+		       	@for((desp, index) <- total.zipWithIndex){
+		       	['@desp.getAno()', @desp.getValor()],
+		       	}
+		       ]
+		   },                  
+                 
+          { name: '@d1.get(1).getNome()',
+        	data: [
+             	@for((desp, index) <- d1.zipWithIndex){
+             	['@desp.getAno()', @desp.getValor()],
+             	}
+               ]
+           }
+		   
+		   , { name: '@d2.get(1).getNome()',
+	        	data: [
+	             	@for((desp, index) <- d2.zipWithIndex){
+	             	['@desp.getAno()', @desp.getValor()],
+	             	}
+	               ]
+	           }
+		   
+		   , { name: '@d3.get(1).getNome()',
+	        	data: [
+	             	@for((desp, index) <- d3.zipWithIndex){
+	             	['@desp.getAno()', @desp.getValor()],
+	             	}
+	               ]
+	           }
+		   
+		   , { name: '@d4.get(1).getNome()',
+	        	data: [
+	             	@for((desp, index) <- d4.zipWithIndex){
+	             	['@desp.getAno()', @desp.getValor()],
+	             	}
+	               ]
+	           }
+		   
+		   , { name: '@d5.get(1).getNome()',
+	        	data: [
+	             	@for((desp, index) <- d5.zipWithIndex){
+	             	['@desp.getAno()', @desp.getValor()],
+	             	}
+	               ]
+	           }
+		   
+		   , { name: '@d6.get(1).getNome()',
+	        	data: [
+	             	@for((desp, index) <- d6.zipWithIndex){
+	             	['@desp.getAno()', @desp.getValor()],
+	             	}
+	               ]
+	           }
+		   
+		   , { name: '@d7.get(1).getNome()',
+	        	data: [
+	             	@for((desp, index) <- d7.zipWithIndex){
+	             	['@desp.getAno()', @desp.getValor()],
+	             	}
+	               ]
+	           }
+		   
+		   , { name: '@d8.get(1).getNome()',
+	        	data: [
+	             	@for((desp, index) <- d8.zipWithIndex){
+	             	['@desp.getAno()', @desp.getValor()],
+	             	}
+	               ]
+	           }
+		   
+		   , { name: '@d9.get(1).getNome()',
+	        	data: [
+	             	@for((desp, index) <- d9.zipWithIndex){
+	             	['@desp.getAno()', @desp.getValor()],
+	             	}
+	               ]
+	           }
+		   
+		   , { name: '@d10.get(1).getNome()',
+	        	data: [
+	             	@for((desp, index) <- d10.zipWithIndex){
+	             	['@desp.getAno()', @desp.getValor()],
+	             	}
+	               ]
+	           }
+		   
+		   , { name: '@d11.get(1).getNome()',
+	        	data: [
+	             	@for((desp, index) <- d11.zipWithIndex){
+	             	['@desp.getAno()', @desp.getValor()],
+	             	}
+	               ]
+	           }
+		   
+		   , { name: '@d12.get(1).getNome()',
+	        	data: [
+	             	@for((desp, index) <- d12.zipWithIndex){
+	             	['@desp.getAno()', @desp.getValor()],
+	             	}
+	               ]
+	           }
+		   
+		   , { name: '@d13.get(1).getNome()',
+	        	data: [
+	             	@for((desp, index) <- d13.zipWithIndex){
+	             	['@desp.getAno()', @desp.getValor()],
+	             	}
+	               ]
+	           }
+		   
+		   , { name: '@d14.get(1).getNome()',
+	        	data: [
+	             	@for((desp, index) <- d14.zipWithIndex){
+	             	['@desp.getAno()', @desp.getValor()],
+	             	}
+	               ]
+	           }
+		   
+		   , { name: '@d15.get(1).getNome()',
+	        	data: [
+	             	@for((desp, index) <- d15.zipWithIndex){
+	             	['@desp.getAno()', @desp.getValor()],
+	             	}
+	               ]
+	           }
+		   
+		   , { name: '@d16.get(1).getNome()',
+	        	data: [
+	             	@for((desp, index) <- d16.zipWithIndex){
+	             	['@desp.getAno()', @desp.getValor()],
+	             	}
+	               ]
+	           }
+		   
+		   , { name: '@d17.get(1).getNome()',
+	        	data: [
+	             	@for((desp, index) <- d17.zipWithIndex){
+	             	['@desp.getAno()', @desp.getValor()],
+	             	}
+	               ]
+	           }
+
+		   
+        ]
+    });
+	
+	
+});
+
+})(jQuery); 
+</script> 
+
+
+}
+
+@main(content)

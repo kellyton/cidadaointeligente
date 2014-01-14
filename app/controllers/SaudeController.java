@@ -121,6 +121,7 @@ public class SaudeController extends Controller{
     				"Tentaremos informá-lo quando estiver perto da data das suas próximas vacinações.");
     	} catch (Exception ex){
     		flash("messageVacina", "Erro cadastrando e-mail. Por favor verifique os dados e tente novamente. (" + ex.getMessage() + ")");
+    		ex.printStackTrace();
     	}
     	
     	return redirect(routes.SaudeController.vacinacao());

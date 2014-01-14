@@ -57,6 +57,7 @@ public class MailService {
 			Logger.info("Email sent to " + to);
  
 		} catch (Exception e) {
+			e.printStackTrace();
 			throw new Exception(e);
 		}
 		
@@ -105,6 +106,7 @@ public class MailService {
 			sendMail(user.getEmail(), corpoPrincipal);
 		} catch (Exception e) {
 			Logger.error("Erro enviando o e-mail para " + user.getEmail() + ". Erro: " + e.getMessage(), e);
+			e.printStackTrace();
 		}
 
 	}

@@ -10,6 +10,7 @@ import models.educacao.Escola;
 import models.financas.Despesa;
 import models.saude.UnidadeSaude;
 import models.saude.Vacina;
+import models.saude.VacinaBak;
 import play.Logger;
 import play.db.jpa.JPA;
 import static models.saude.UnidadeSaude.*;
@@ -71,6 +72,10 @@ public class SaudeExtractor {
 		results = processaCalendarioVacinacao(arquivo, UNIDADE_VACINACAO);
 		System.out.println("Processada com " + results + " erros.");
 		
+		arquivo = "./data/saude/calendariovacinas.csv.bak";
+		results = processaCalendarioVacinacaoAnterior(arquivo, UNIDADE_VACINACAO);
+		System.out.println("Processada com " + results + " erros.");
+		
 		JPA.em().getTransaction().commit();
 		JPA.em().getTransaction().begin();
 
@@ -99,7 +104,6 @@ public class SaudeExtractor {
 				br = new BufferedReader(new InputStreamReader(new FileInputStream(arquivo), "UTF8"));
 			}
 			
-			//Jump first line
 			line = br.readLine();				
 			
 			while ((line = br.readLine()) != null) {
@@ -456,19 +460,79 @@ public class SaudeExtractor {
 			
 			while ((line = br.readLine()) != null) {
 				vacina = new Vacina();
-				fields = line.split(csvSplitBy, -1); 
-				
+				fields = line.split(csvSplitBy, -1);
+
 				vacina.setIdade(fields[0]);
 				vacina.setVacina(fields[1]);
-				vacina.setDoenca_protecao(fields[2]);
+				vacina.setDoencaProtecao(fields[2]);
 				vacina.setDose(fields[3]);
-				vacina.setDose_qtd(fields[4]);
-				vacina.setVia_administracao(fields[5]);
-				
+				vacina.setDoseQtd(fields[4]);
+				vacina.setViaAdministracao(fields[5]);
+				vacina.setTipo(Integer.parseInt(fields[6]));
+				vacina.setDiaDeAplicacao(Integer.parseInt(fields[7]));
+
 				try {
-					JPA.em().persist(vacina);					
-				} catch (Exception ex){
-					Logger.error("Erro salvando vacina " + vacina + ": " + ex.getLocalizedMessage());
+					JPA.em().persist(vacina);
+
+				} catch (Exception ex) {
+					Logger.error("Erro salvando vacina " + vacina + ": "
+							+ ex.getLocalizedMessage());
+					erros++;
+				}
+			}
+			
+			Logger.info("Success processing " + arquivo);
+			
+			br.close();
+			
+		} catch (Exception e){
+			Logger.error("Erro processando arquivo " + arquivo + ": " + e.getLocalizedMessage());
+			e.printStackTrace();
+			erros++;
+		}
+		
+		return erros;
+	}
+	
+	private int processaCalendarioVacinacaoAnterior(String arquivo, int tipo) {
+		// TODO Auto-generated method stub
+				
+		BufferedReader br;
+		String line;
+		String fields[];
+		String csvSplitBy = ";";
+		int erros = 0;
+		
+		VacinaBak vacina;
+
+		try {
+			
+			Logger.info("Processing file: " + arquivo);
+			
+			br = new BufferedReader(new InputStreamReader(new FileInputStream(arquivo), "UTF8"));
+			
+			//Jump first line
+			line = br.readLine();				
+			
+			//idade;vacina;doenca_protecao;dose;dose_qtd;via_administracao
+			
+			while ((line = br.readLine()) != null) {
+				vacina = new VacinaBak();
+				fields = line.split(csvSplitBy, -1);
+
+				vacina.setIdade(fields[0]);
+				vacina.setVacina(fields[1]);
+				vacina.setDoencaProtecao(fields[2]);
+				vacina.setDose(fields[3]);
+				vacina.setDoseQtd(fields[4]);
+				vacina.setViaAdministracao(fields[5]);
+
+				try {
+					JPA.em().persist(vacina);
+
+				} catch (Exception ex) {
+					Logger.error("Erro salvando vacina " + vacina + ": "
+							+ ex.getLocalizedMessage());
 					erros++;
 				}
 			}

@@ -8,6 +8,14 @@ import javax.persistence.Id;
 
 @Entity
 public class Vacina {
+	
+	public static final int DOSE_UNICA = 0;
+	public static final int DOSE_PRIMEIRA = 1;
+	public static final int DOSE_SEGUNDA = 2;
+	public static final int DOSE_TERCEIRA = 3;
+	public static final int DOSE_REFORCO = 4;
+	public static final int DOSE_PERIODICA = 99;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
@@ -16,13 +24,17 @@ public class Vacina {
 	@Column
 	private String vacina;
 	@Column(columnDefinition = "TEXT")
-	private String doenca_protecao;
+	private String doencaProtecao;
 	@Column
 	private String dose;
 	@Column
-	private String dose_qtd;
+	private String doseQtd;
 	@Column
-	private String via_administracao;
+	private String viaAdministracao;
+	@Column
+	private int tipo;
+	@Column
+	private int diaDeAplicacao;
 
 	public long getId() {
 		return id;
@@ -48,12 +60,12 @@ public class Vacina {
 		this.vacina = vacina;
 	}
 
-	public String getDoenca_protecao() {
-		return doenca_protecao;
+	public String getDoencaProtecao() {
+		return doencaProtecao;
 	}
 
-	public void setDoenca_protecao(String doenca_protecao) {
-		this.doenca_protecao = doenca_protecao;
+	public void setDoencaProtecao(String doencaProtecao) {
+		this.doencaProtecao = doencaProtecao;
 	}
 
 	public String getDose() {
@@ -64,20 +76,36 @@ public class Vacina {
 		this.dose = dose;
 	}
 
-	public String getDose_qtd() {
-		return dose_qtd;
+	public String getDoseQtd() {
+		return doseQtd;
 	}
 
-	public void setDose_qtd(String dose_qtd) {
-		this.dose_qtd = dose_qtd;
+	public void setDoseQtd(String doseQtd) {
+		this.doseQtd = doseQtd;
 	}
 
-	public String getVia_administracao() {
-		return via_administracao;
+	public String getViaAdministracao() {
+		return viaAdministracao;
 	}
 
-	public void setVia_administracao(String via_administracao) {
-		this.via_administracao = via_administracao;
+	public void setViaAdministracao(String viaAdministracao) {
+		this.viaAdministracao = viaAdministracao;
+	}
+
+	public int getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(int tipo) {
+		this.tipo = tipo;
+	}
+
+	public int getDiaDeAplicacao() {
+		return diaDeAplicacao;
+	}
+
+	public void setDiaDeAplicacao(int diaDeAplicacao) {
+		this.diaDeAplicacao = diaDeAplicacao;
 	}
 
 	@Override

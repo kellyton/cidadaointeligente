@@ -1,0 +1,36 @@
+idade;vacina;doenca_protecao;dose;dose_qtd;via_administracao
+Ao nascer;BCG;Formas graves da Tuberculose;Dose única;0,1 ml ;ID
+Ao nascer;Hepatite B;Hepatite B;1ª Dose;0,5 ml;IM
+2 meses;Vacina Pentavalente   (DTP + Hib + HB);Difteria, Tétano, Coqueluche e Doenças Causadas pelo Hemófilos Influenzae tipo B (Meningite, Pneumonia) e Hepatite B;1ª Dose;0,5 ml;IM
+2 meses;Vacina Inativada contra a Poliomielite (VIP);Poliomielite ou Parasilia Infantil;1ª Dose;0,5 ml;IM
+2 meses;Vacina Oral Rotavírus Humano (VORH);Gastroenterite causada pelo Rotavírus;1ª Dose;1,5 ml;Oral
+2 meses;(*) Pneumocócica 10;Doenças causadas pelos pneumococos (Meningite, Pneumonia, Otite, etc.);1ª Dose;0,5 ml;IM
+3 meses;Meningocócica C;Meningite Meningocócica Tipo C;1ª Dose;0,5 ml;IM
+4 meses;Vacina Pentavalente   (DTP + Hib +  HB);Difteria, Tétano, Coqueluche e Doenças Causadas pelo Hemófilos Influenzae tipo B (Meningite, Pneumonia) e Hepatite B;2ª Dose;0,5 ml;IM
+4 meses;Vacina Inativada contra a Poliomielite (VIP);Poliomielite ou Parasilia Infantil;2ª Dose;0,5 ml;IM
+4 meses;Vacina Oral Rotavírus Humano (VORH);Gastroenterite causada pelo Rotavírus;2ª Dose;1,5 ml;Oral
+4 meses;(*) Pneumocócica 10;Doenças causadas pelos pneumococos (Meningite, Pneumonia, Otite, etc.);2ª Dose;0,5 ml;IM
+5 meses;Meningocócica C;Meningite Meningocócica Tipo C;2ª Dose;0,5 ml;IM
+6 meses;(*) Pneumocócica 10;Doenças causadas pelos pneumococos (Meningite, Pneumonia, Otite, etc.);3ª Dose;0,5 ml;IM
+6 meses;Vacina Oral contra Poliomielite (VOP);Poliomielite ou Parasilia Infantil;3ª Dose;02 gotas;Oral
+6 meses;Vacina Pentavalente   (DTP + Hib + HB);Difteria, Tétano, Coqueluche e Doenças Causadas pelo Hemófilos Influenzae tipo B (Meningite, Pneumonia) e Hepatite B;3ª Dose;0,5 ml;IM
+9 meses;(**) Febre Amarela;Febre Amarela;Dose Inicial;0,5 ml;SC
+12 meses;Tríplice Viral (SCR);Sarampo, Caxumba e Rubéola;1ª Dose;0,5 ml;SC
+12 meses;(*) Pneumocócica 10;Doenças causadas pelos pneumococos (Meningite, Pneumonia, Otite, etc.);Reforço;0,5 ml;IM
+15 meses;Tríplice Bacteriana (DTP);Difteria, Tétano, Coqueluche.;1º Reforço;0,5 ml;IM
+15 meses;Poliomielite (oral);Poliomielite ou Parasilia Infantil;Reforço;02 gotas;Oral
+15 meses;Meningocócica C;Meningite Meningocócica Tipo C;Reforço;0,5 ml;IM
+15 meses;(***) Tetra Viral;Sarampo, Caxumba, Rubéola e Varicela;2ª Dose;0,5 ml;SC
+4 anos;Tríplice Bacteriana (DTP);Difteria, Tétano, Coqueluche.;2º Reforço;0,5 ml;IM
+10 anos;(**) Febre Amarela;Febre Amarela;1 Dose a cada 10 anos;0,5 ml;SC
+10 a 19 anos;Hepatite B;Hepatite B;1ª Dose;;
+10 a 19 anos;Febre Amarela;Febre Amarela;1 Dose a cada 10 anos;;
+10 a 19 anos;Tríplice Viral (SCR);Sarampo, Caxumba e Rubéola;2 doses;;
+10 a 19 anos;Dupla Adulto (dT);Difteria e Tétano;Após completar esquema de 3 doses, fazer reforço a cada 10 anos;;
+20 a 59 anos;Hepatite B ;Hepatite B;3 doses (até 49 anos) ;;
+20 a 59 anos;Dupla Adulto (dT);Difteria e Tétano;Após completar esquema de 3 doses, fazer reforço a cada 10 anos;;
+20 a 59 anos;Febre Amarela;Febre Amarela;1 Dose a cada 10 anos;;
+20 a 59 anos;Tríplice Viral (SCR);Sarampo, Caxumba e Rubéola;1 dose (até 49 anos);;
+60 anos e mais;Febre Amarela;Febre Amarela;1 Dose a cada 10 anos;;
+60 anos e mais;Influenza Sazonal;Influenza (Gripe);Dose anual;;
+60 anos e mais;Pneumocócica 23;Doenças causadas pelos pneumococos (Meningite, Pneumonia, Otite, etc.);Dose única;;

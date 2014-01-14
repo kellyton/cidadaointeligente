@@ -1,19 +1,42 @@
 package controllers;
 
 import static play.data.Form.form;
+
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
+
 import models.Contato;
 import models.saude.ContatoVacina;
 import play.*;
 import play.data.DynamicForm;
 import play.db.jpa.JPA;
 import play.db.jpa.Transactional;
+import play.libs.Akka;
 import play.mvc.*;
 
+import scala.concurrent.duration.Duration;
 import util.DateUtil;
 import views.html.*;
 
 public class Application extends Controller {
   
+	//Start email checker
+	//static 	
+	{
+		Akka.system().scheduler().schedule(
+				Duration.create(0, TimeUnit.MILLISECONDS),
+				Duration.create(10, TimeUnit.SECONDS),
+				new Runnable() {
+					public void run() {
+						Logger.info("Rodando o check de vacinas " + new Date());
+						SaudeController.checkVacinas();
+					}
+				},
+				Akka.system().dispatcher()
+			);
+
+	}
+	
     public static Result index() {
         return ok(index.render());
     }

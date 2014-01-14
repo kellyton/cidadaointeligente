@@ -1,16 +1,19 @@
 package controllers;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+
+import org.joda.time.DateTime;
 
 import models.Total;
-import models.educacao.Escola;
 import models.saude.ContatoVacina;
+import models.saude.DosePessoa;
+import models.saude.PessoaDoses;
 import models.saude.UnidadeSaude;
 import models.saude.Vacina;
+import models.saude.VacinaBak;
 import static models.Total.*;
 import static models.saude.UnidadeSaude.*;
 import static play.data.Form.form;
@@ -21,8 +24,8 @@ import play.db.jpa.JPA;
 import play.db.jpa.Transactional;
 import play.mvc.Controller;
 import play.mvc.Result;
-import services.EducacaoService;
 import services.FinancasService;
+import services.MailService;
 import services.SaudeService;
 import util.DateUtil;
 
@@ -78,7 +81,7 @@ public class SaudeController extends Controller{
 	
 	@Transactional
 	public static Result vacinacao(){
-		List<Vacina> vacinas = new SaudeService().getVacinas();
+		List<VacinaBak> vacinas = new SaudeService().getVacinasBak();
 		
 		return ok(views.html.vacinas.render(vacinas));
 	}
@@ -90,6 +93,16 @@ public class SaudeController extends Controller{
 		String email = dynamicForm.get("email");
 		String nasc = dynamicForm.get("nascimento");
 		
+		if (
+				(nome == null || nome.trim().isEmpty()) ||
+				(email == null || email.trim().isEmpty()) ||
+				(nasc == null || nasc.trim().isEmpty())
+				){
+			flash("messageVacina", "Por favor informe todos os dados para o cadastro.");
+			
+			return redirect(routes.SaudeController.vacinacao());
+		}
+		
 		try {
 			ContatoVacina cv = new ContatoVacina();
 			cv.setNome(nome);
@@ -97,13 +110,112 @@ public class SaudeController extends Controller{
 			cv.setNascimento(DateUtil.parseToDate(nasc));
 		
     		JPA.em().persist(cv);
-    		flash("message", "E-mail cadastrado com sucesso! " +
+    		
+    		generateDoses(cv);
+    		
+    		sendMailBoasVindas(cv);
+    		
+    		//return abreCartao(email);
+    		
+    		flash("messageVacina", "E-mail cadastrado com sucesso! " +
     				"Tentaremos informá-lo quando estiver perto da data das suas próximas vacinações.");
     	} catch (Exception ex){
-    		flash("message", "Erro cadastrando e-mail. Por favor verifique os dados e tente novamente. (" + ex.getMessage() + ")");
+    		flash("messageVacina", "Erro cadastrando e-mail. Por favor verifique os dados e tente novamente. (" + ex.getMessage() + ")");
     	}
     	
     	return redirect(routes.SaudeController.vacinacao());
+	}
+	
+	private static void sendMailBoasVindas(ContatoVacina user) {
+		SaudeService saudeService = new SaudeService();
+		MailService mailService = new MailService();
+		
+		List<DosePessoa> dosesProximas = saudeService.getProximasDoses(user, 2);
+		List<DosePessoa> dosesUltimas = saudeService.getUltimasDoses(user, 2);
+		mailService.sendEmailBoasVindas(user, dosesProximas, dosesUltimas);
+	}
+	
+	@Transactional
+	public static Result cartaoVacinacao(){
+		DynamicForm dynamicForm = form().bindFromRequest();
+		String email = dynamicForm.get("email");
+		
+		return abreCartao(email);
+	}
+	
+	@Transactional
+	public static Result cartaoVacinacaoShow(long id){
+		ContatoVacina cv = new SaudeService().getUsuario(id);
+		
+		if (cv != null) {
+			return abreCartao(cv.getEmail());
+		} else {
+			return redirect(routes.SaudeController.vacinacao());
+		}
+	}
+	
+	public static Result abreCartao(String email){
+		SaudeService service = new SaudeService();
+		
+		try {
+			List<ContatoVacina> users = service.getUsuarios(email);
+			
+			List<PessoaDoses> pessoaDoses = new ArrayList<PessoaDoses>();
+			PessoaDoses pd;
+			
+			for (ContatoVacina user: users){
+				List<DosePessoa> doses = service.getDoses(user);
+				pd = new PessoaDoses();
+				pd.setPessoa(user);
+				pd.setDoses(doses);
+				pessoaDoses.add(pd);
+			}
+			
+			return ok(views.html.cartaovacinacao.render(pessoaDoses));
+
+    	} catch (Exception ex){
+    		flash("messageLogin", "Erro retornando dados. Tem certeza que você cadastrou este e-mail? (" + ex.getMessage() + ")");
+    		Logger.error(ex.getMessage(), ex);
+    		return redirect(routes.SaudeController.vacinacao());
+    	}
+	}
+	
+	/*public static Result abreCartaoBak(String email){
+		SaudeService service = new SaudeService();
+		
+		try {
+			List<ContatoVacina> users = service.getUsuarios(email);
+			ContatoVacina user = users.get(0);
+			
+			//TODO: Por enquanto é só um
+			List<DosePessoa> doses = service.getDoses(user);
+			
+			return ok(views.html.cartaovacinacao.render(user, doses));
+
+    	} catch (Exception ex){
+    		flash("messageLogin", "Erro retornando dados. Tem certeza que você cadastrou este e-mail? (" + ex.getMessage() + ")");
+    		Logger.error(ex.getMessage(), ex);
+    		return redirect(routes.SaudeController.vacinacao());
+    	}
+	}*/
+	
+	private static void generateDoses(ContatoVacina cv) {
+		SaudeService service = new SaudeService();
+		List<Vacina> vacinas = service.getVacinas();
+		
+		Date d = cv.getNascimento();
+		DateTime dataBase = new DateTime(d);
+		
+		DosePessoa dp;
+		for (Vacina vacina: vacinas){
+			dp = new DosePessoa();
+			dp.setPessoa(cv);
+			dp.setVacina(vacina);
+			dp.setDataPrevista(dataBase.plusDays(vacina.getDiaDeAplicacao()));
+			
+			JPA.em().persist(dp);
+		}
+		
 	}
 	
 	/**
@@ -122,6 +234,17 @@ public class SaudeController extends Controller{
 		return ok("Foi");
 	}
 	
-
+	@Transactional
+	public static void checkVacinas() {
+		JPA.withTransaction(new play.libs.F.Callback0() {
+			@Override
+			public void invoke() throws Throwable {
+				//before and after 72 hours
+				List<DosePessoa> doses = new SaudeService().getProximasDoses(72);
+				MailService mailService = new MailService();
+				mailService.sendEmailAviso(doses);
+			}
+		});
+	}
 	
 }

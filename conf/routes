@@ -8,9 +8,9 @@ GET     /sobre                      controllers.Application.sobre()
 POST    /                           controllers.Application.cadastraEmail()
 
 #Configurations. MUST be before others
-#GET     /financas/configure/:id			controllers.FinancasController.configurar(id: Integer)
-#GET     /educacao/configure			controllers.EducacaoController.configurar()
-#GET     /saude/configure			controllers.SaudeController.configurar()
+GET     /financas/configure/:id			controllers.FinancasController.configurar(id: Integer)
+GET     /educacao/configure			controllers.EducacaoController.configurar()
+GET     /saude/configure			controllers.SaudeController.configurar()
 
 #Financas
 GET		/financas					controllers.FinancasController.showCompareOrcamentoAnual()
@@ -24,6 +24,9 @@ GET		/educacao/escolas/:id		controllers.EducacaoController.showEscola(id: Long)
 #Saude
 GET		/saude/vacinacao			controllers.SaudeController.vacinacao()
 POST	/saude/vacinacao			controllers.SaudeController.cadastraEmailVacina()
+POST	/saude/vacinacao/cartaoVacinacao			controllers.SaudeController.cartaoVacinacao()
+GET		/saude/vacinacao/:id			controllers.SaudeController.cartaoVacinacaoShow(id: Long)
+
 GET		/saude/orcamento			controllers.SaudeController.orcamento()
 GET		/saude/unidadessaude/group/:id			controllers.SaudeController.unidadesSaude(id: Long)
 GET		/saude/unidadessaude/:id		controllers.SaudeController.showUnidadeSaude(id: Long)

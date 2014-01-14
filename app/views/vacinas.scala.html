@@ -1,4 +1,4 @@
-@(vacinas: List[models.saude.Vacina])
+@(vacinas: List[models.saude.VacinaBak])
 
 @content = {
 
@@ -34,9 +34,9 @@
 
 					 <div class="container newsletter">
 						 <div class="row">
-							 @if(flash.containsKey("message")) {
+							 @if(flash.containsKey("messageVacina")) {
 							 <div class="alert-message error">
-							 	<strong>@flash.get("message")</strong> 
+							 	<strong>@flash.get("messageVacina")</strong> 
 							 </div>
 							 }
 						     <div class="well">
@@ -77,7 +77,7 @@
 				                    <tr>
 				                      <td>@vac.getIdade()</td>
 				                      <td>@vac.getVacina()</td>
-				                      <td>@vac.getDoenca_protecao()</td>
+				                      <td>@vac.getDoencaProtecao()</td>
 				                      <td>@vac.getDose()</td>
 				                    </tr>
 				                    }

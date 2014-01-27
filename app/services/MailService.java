@@ -37,7 +37,7 @@ public class MailService {
 		Session session = Session.getDefaultInstance(props,
 			new javax.mail.Authenticator() {
 				protected PasswordAuthentication getPasswordAuthentication() {
-					return new PasswordAuthentication("vacina@cidadaorecifense.com.br","ditaoori");
+					return new PasswordAuthentication("vacina@cidadaointeligente.com",CHANGE_IT);
 				}
 			});
  
@@ -45,7 +45,7 @@ public class MailService {
  
 			//Message message = new MimeMessage(session);
 			MimeMessage message = new MimeMessage(session);
-			message.setFrom(new InternetAddress("vacina@cidadaorecifense.com.br","Vacinação em Dia"));
+			message.setFrom(new InternetAddress("vacina@cidadaointeligente.com","Vacinação em Dia"));
 			message.setRecipients(Message.RecipientType.TO,
 					InternetAddress.parse(to));
 			message.setSubject("Te ajudamos a cuidar da sua saúde!");

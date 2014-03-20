@@ -1,6 +1,44 @@
 
 @content = {
 
+<div class="sep"></div>
+
+<div class="parallax-slider">
+          <!-- Slider (Parallax Slider) -->            
+            <div id="da-slider" class="da-slider">
+              <!-- Each slide should be enclosed inside "da-slide" class -->
+              <div class="da-slide">
+                <div class="slide-details">
+                  <!-- Heading -->
+                  <h2><span>CidadãoRecifense</span></h2>
+                  <!-- Para -->
+                  <p>O portal da cidade do Recife. Feito pela população, para a população!</p>
+                </div>
+              </div>
+              <div class="da-slide">
+                <h2><span>Orçamento!</span></h2>
+                <p>Você sabia que tem como saber como a prefeitura gasta o NOSSO dinheiro?</p>
+                <a href="@routes.FinancasController.showCompareOrcamentoAnual()" class="da-link">Saiba aqui</a>
+              </div>
+              <div class="da-slide">
+              	<h2><span>Precisa de um atendimento médico?</span></h2>
+                <p>Se precisar de um atendimento médico, é só procurar no menu de Unidades de Saúde. E indicaremos os mais próximos de você!</p>
+                <a href="@routes.SaudeController.unidadesSaude(99)" class="da-link">Saiba aqui</a>
+              </div>
+              <div class="da-slide">
+                <h2><span>Creches e escolas</span></h2>
+                <p>Precisa de uma creche? Ou quer saber informações sobre a escola do seu filho? Te mostramos também.</p>
+                <a href="@routes.EducacaoController.escolas(99)" class="da-link">Saiba aqui</a>
+              </div>
+              <nav class="da-arrows">
+                <span class="da-arrows-prev"></span>
+                <span class="da-arrows-next"></span>
+              </nav>
+            </div>
+  </div>
+
+<div class="sep"></div>
+
 <div class="slider-features">
   <div class="container">
     <div class="row">

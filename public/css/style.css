@@ -369,7 +369,7 @@ font-family: 'Open Sans', Arial, Helvetica, sans-serif;
 
 .navbar button{
 	border: 0px;
-	background:#eee !important;  
+	background:#eee !important;
 }
 
 .navbar button:hover{
@@ -377,7 +377,7 @@ font-family: 'Open Sans', Arial, Helvetica, sans-serif;
 }
 
 .navbar button .icon-bar{
-	background: #ddd !important;
+	background: #5eb2d9 !important;
 }
 
 .navbar .caret{

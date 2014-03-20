@@ -20,19 +20,41 @@
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsAKBtrmjxAF0ibltJFWKnKfbrcmXqUaM&sensor=false">
     </script>
     <script type="text/javascript">
+	    var initialLocation;
+		var directionsDisplay;
+		var directionsService = new google.maps.DirectionsService();
+		var map;
+		var targetLocation;
+		var lt;
+		var lg;
 		function initialize() {
-		    	 
-			var myLatlng = new google.maps.LatLng(@item.getLatitude(), @item.getLongitude());
+			if (navigator.geolocation) {
+			     navigator.geolocation.getCurrentPosition(function (position) {
+			         initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+			         map.setCenter(initialLocation);
+			         
+					var meuLocal = new google.maps.Marker({
+						position: initialLocation,
+						map: map,
+						title:"Você está aqui!",
+						icon:"@routes.Assets.at("img/iconperson5.png")"
+					});
+					
+					calcRoute(@item.getLatitude(), @item.getLongitude());
+			         
+			     });
+			 } else {
+				 initialLocation = new google.maps.LatLng(-8.063198,-34.871217); @*centro do recife*@
+			 }
 			    	
 			var mapOptions = {
-				center: myLatlng,
+				center: initialLocation,
 				zoom: 16,
 				mapTypeId: google.maps.MapTypeId.ROADMAP 
 			};
 			        
-			var map = new google.maps.Map(document.getElementById("map-canvas"),
-			mapOptions);
-			     
+			map = new google.maps.Map(document.getElementById("map-canvas"),
+				mapOptions);
 
 			var marker = new google.maps.Marker({
 				position: new google.maps.LatLng(@item.getLatitude(), @item.getLongitude()),
@@ -48,12 +70,31 @@
 					 'Endereço: @item.getEnderecoCompleto()<br>'
 				)
 				infowindow.open(map, marker);
+				calcRoute(@item.getLatitude(), @item.getLongitude());
 			});
 			
 			var infowindow = new google.maps.InfoWindow({
-			});	
-			
+			});
+			directionsDisplay = new google.maps.DirectionsRenderer();
+			directionsDisplay.setMap(map);
 		}
+		
+		function calcRoute(lat,lgt) {
+			  var start = initialLocation;
+			  var end = new google.maps.LatLng(lat,lgt);
+			  
+			  var request = {
+			      origin:initialLocation,
+			      destination:end,
+			      travelMode: google.maps.TravelMode.DRIVING
+			  };
+			  directionsService.route(request, function(response, status) {
+			    if (status == google.maps.DirectionsStatus.OK) {
+			      directionsDisplay.setDirections(response);
+			    }
+			  });
+		}
+		
 		google.maps.event.addDomListener(window, 'load', initialize);
     </script>
   

@@ -16,10 +16,12 @@ package controllers;
 
 import java.util.List;
 
+import models.cultura.Cultura;
 import models.educacao.Escola;
 import models.saude.UnidadeSaude;
 import play.db.jpa.Transactional;
 import play.mvc.*;
+import services.CulturaService;
 import services.EducacaoService;
 import services.SaudeService;
 
@@ -47,5 +49,16 @@ public class MapService extends Controller {
 	public static Result showMapUnidadeSaude(long id){
 		UnidadeSaude unidade = new SaudeService().getUnidadeSaude(id);
 		return ok(views.html.mapasaudeindividual.render(unidade));
+	}
+	@Transactional
+	public static Result showMapPontosTuristicos(long id){
+		List<Cultura> pontos = new CulturaService().getEquipamentos(id);
+		return ok(views.html.mapacultura.render(pontos));
+	}
+	
+	@Transactional
+	public static Result showMapPontoTuristico(long id){
+		Cultura ponto = new CulturaService().getEquipamento(id);
+		return ok(views.html.mapaculturaindividual.render(ponto));
 	}
 }

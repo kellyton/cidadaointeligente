@@ -37,6 +37,21 @@ public class Application extends Controller {
 
 	}
 	
+	@Transactional
+	public static Result configure(){
+		Date ini = new Date();
+		
+		CulturaController.configurar();
+		EducacaoController.configurar();
+		SaudeController.configurar();
+		FinancasController.configurar();
+		
+		Date fim = new Date();
+		Logger.info("Configuração total em " + (fim.getTime() - ini.getTime())/1000 + " segundos");
+		
+		return ok("Done in " + (fim.getTime() - ini.getTime())/1000 + " segundos");
+	}
+	
     public static Result index() {
         return ok(index.render());
     }

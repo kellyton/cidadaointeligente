@@ -7,10 +7,12 @@ GET     /                           controllers.Application.index()
 GET     /sobre                      controllers.Application.sobre()
 POST    /                           controllers.Application.cadastraEmail()
 
-#Configurations. MUST be before others
-#GET     /financas/configure/:id			controllers.FinancasController.configurar(id: Integer)
+#Configurations. MUST run before others
+#GET 	/configureall				controllers.Application.configure()
+#GET     /financas/configure/:id		controllers.FinancasController.configurar(id: Integer)
 #GET     /educacao/configure			controllers.EducacaoController.configurar()
-#GET     /saude/configure			controllers.SaudeController.configurar()
+GET     /saude/configure			controllers.SaudeController.configurar()
+GET     /cultura/configure			controllers.CulturaController.configurar()
 
 #Financas
 GET		/financas					controllers.FinancasController.showCompareOrcamentoAnual()
@@ -31,12 +33,20 @@ GET		/saude/orcamento			controllers.SaudeController.orcamento()
 GET		/saude/unidadessaude/group/:id			controllers.SaudeController.unidadesSaude(id: Long)
 GET		/saude/unidadessaude/:id		controllers.SaudeController.showUnidadeSaude(id: Long)
 
+#Cultura
+GET		/cultura/orcamento			controllers.CulturaController.orcamento()
+GET		/cultura/pontos/group/:id	controllers.CulturaController.pontos(id: Long)
+GET		/cultura/pontos/:id			controllers.CulturaController.showPonto(id: Long)
+
 #Maps
 GET		/educacao/map				controllers.MapService.showMapEscolas(id: Long)
 GET		/educacao/map/:id			controllers.MapService.showMapEscola(id: Long)
 
 GET		/saude/map/group/:id		controllers.MapService.showMapUnidadesSaude(id: Long)
 GET		/saude/map/:id				controllers.MapService.showMapUnidadeSaude(id: Long)
+
+GET		/cultura/map/group/:id		controllers.MapService.showMapPontosTuristicos(id: Long)
+GET		/cultura/map/:id			controllers.MapService.showMapPontoTuristico(id: Long)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

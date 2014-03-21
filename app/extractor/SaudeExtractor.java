@@ -24,7 +24,7 @@ public class SaudeExtractor {
 		
 		String arquivo;
 		
-		/*arquivo = "./data/saude/ceo.csv";
+		arquivo = "./data/saude/ceo.csv";
 		results = processarEspecialidade(arquivo, ESPECIALIDADE_ODONTOLOGICA);
 		System.out.println("Processada com " + results + " erros.");
 		
@@ -66,15 +66,15 @@ public class SaudeExtractor {
 		
 		arquivo = "./data/saude/unidadesvacinacao.csv";
 		results = processarVacinacao(arquivo, UNIDADE_VACINACAO);
-		System.out.println("Processada com " + results + " erros.");*/
+		System.out.println("Processada com " + results + " erros.");
 		
-		arquivo = "./data/saude/calendariovacinas.csv";
+		/*arquivo = "./data/saude/calendariovacinas.csv";
 		results = processaCalendarioVacinacao(arquivo, UNIDADE_VACINACAO);
 		System.out.println("Processada com " + results + " erros.");
 		
 		arquivo = "./data/saude/calendariovacinas.csv.bak";
 		results = processaCalendarioVacinacaoAnterior(arquivo, UNIDADE_VACINACAO);
-		System.out.println("Processada com " + results + " erros.");
+		System.out.println("Processada com " + results + " erros.");*/
 		
 		JPA.em().getTransaction().commit();
 		JPA.em().getTransaction().begin();

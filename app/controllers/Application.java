@@ -38,6 +38,11 @@ public class Application extends Controller {
 	}
 	
 	@Transactional
+	public static Result video(){
+		return ok("Vídeo sendo carregado para o Youtube. Favor tentar acessar em alguns minutos");
+	}
+	
+	@Transactional
 	public static Result configure(){
 		Date ini = new Date();
 		

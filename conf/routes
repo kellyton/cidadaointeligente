@@ -6,13 +6,14 @@
 GET     /                           controllers.Application.index()
 GET     /sobre                      controllers.Application.sobre()
 POST    /                           controllers.Application.cadastraEmail()
+GET		/video						controllers.Application.video()
 
 #Configurations. MUST run before others
 #GET 	/configureall				controllers.Application.configure()
 #GET     /financas/configure/:id		controllers.FinancasController.configurar(id: Integer)
 #GET     /educacao/configure			controllers.EducacaoController.configurar()
-GET     /saude/configure			controllers.SaudeController.configurar()
-GET     /cultura/configure			controllers.CulturaController.configurar()
+#GET     /saude/configure			controllers.SaudeController.configurar()
+#GET     /cultura/configure			controllers.CulturaController.configurar()
 
 #Financas
 GET		/financas					controllers.FinancasController.showCompareOrcamentoAnual()

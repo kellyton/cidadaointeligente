@@ -39,7 +39,7 @@ public class Application extends Controller {
 	
 	@Transactional
 	public static Result video(){
-		return ok("Vídeo sendo carregado. Favor tentar acessar em alguns minutos.");
+		return redirect("http://youtu.be/4qn7w-thvEo");
 	}
 	
 	@Transactional

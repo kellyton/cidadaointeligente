@@ -1,6 +1,7 @@
 package controllers;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -15,6 +16,37 @@ import services.FinancasService;
 
 public class FinancasController extends Controller{
 
+	private static List<Total> retiraVazios(List<Total> lista){
+		List<Total> novaLista = new ArrayList<Total>();
+		
+		if (lista.size() == 12) { //contém todos os ítens
+			return lista;
+		} else { // faz o tratamento
+			Total referencia = lista.get(0);
+			
+			int ano = 2002;
+			for (Total total: lista){
+				if (total.getAno() == ano){
+					novaLista.add(total);
+					ano++;
+				} else {
+					while (total.getAno() > ano){//Adiciona todos os vazios
+						Total novoTotal = new Total();
+						novoTotal.setTipo(referencia.getTipo());
+						novoTotal.setNome(referencia.getNome());
+						novoTotal.setValor(0.0);
+						novoTotal.setValor2(0.0);
+						novoTotal.setAno(ano);
+						novaLista.add(novoTotal);
+						ano++;
+					}
+					novaLista.add(total);//adiciona o correto ao final
+					ano++;
+				}
+			}
+			return novaLista;
+		}
+	}
 	
 	@Transactional
 	public static Result showCompareOrcamentoAnual(){
@@ -22,23 +54,23 @@ public class FinancasController extends Controller{
 		
 		List<Total> total = service.getGastos(DESPESA_TOTAL);
 		
-		List<Total> urbanismo = service.getGastos(DESPESA_POR_FUNCAO, "URBANISMO");
-		List<Total> saude = service.getGastos(DESPESA_POR_FUNCAO, "SAÚDE");
-		List<Total> administracao = service.getGastos(DESPESA_POR_FUNCAO, "ADMINISTRAÇÃO");
-		List<Total> educacao = service.getGastos(DESPESA_POR_FUNCAO, "EDUCAÇÃO");
-		List<Total> previdencia = service.getGastos(DESPESA_POR_FUNCAO, "PREVIDÊNCIA SOCIAL");
-		List<Total> cultura = service.getGastos(DESPESA_POR_FUNCAO, "CULTURA");
-		List<Total> encargos = service.getGastos(DESPESA_POR_FUNCAO, "ENCARGOS ESPECIAIS");
-		List<Total> saneamento = service.getGastos(DESPESA_POR_FUNCAO, "SANEAMENTO");
-		List<Total> assistencia = service.getGastos(DESPESA_POR_FUNCAO, "ASSISTÊNCIA SOCIAL");
-		List<Total> ambiental = service.getGastos(DESPESA_POR_FUNCAO, "GESTÃO AMBIENTAL");
-		List<Total> comunicacoes = service.getGastos(DESPESA_POR_FUNCAO, "COMUNICAÇÕES");
-		List<Total> comercio = service.getGastos(DESPESA_POR_FUNCAO, "COMÉRCIO E SERVIÇOS");
-		List<Total> habitacao = service.getGastos(DESPESA_POR_FUNCAO, "HABITAÇÃO");
-		List<Total> desporto = service.getGastos(DESPESA_POR_FUNCAO, "DESPORTO E LAZER");
-		List<Total> cidadania = service.getGastos(DESPESA_POR_FUNCAO, "DIREITOS DA CIDADANIA");
-		List<Total> ciencia = service.getGastos(DESPESA_POR_FUNCAO, "CIÊNCIA E TECNOLOGIA");
-		List<Total> trabalho = service.getGastos(DESPESA_POR_FUNCAO, "TRABALHO");
+		List<Total> urbanismo = retiraVazios(service.getGastos(DESPESA_POR_FUNCAO, "URBANISMO"));
+		List<Total> saude = retiraVazios(service.getGastos(DESPESA_POR_FUNCAO, "SAÚDE"));
+		List<Total> administracao = retiraVazios(service.getGastos(DESPESA_POR_FUNCAO, "ADMINISTRAÇÃO"));
+		List<Total> educacao = retiraVazios(service.getGastos(DESPESA_POR_FUNCAO, "EDUCAÇÃO"));
+		List<Total> previdencia = retiraVazios(service.getGastos(DESPESA_POR_FUNCAO, "PREVIDÊNCIA SOCIAL"));
+		List<Total> cultura = retiraVazios(service.getGastos(DESPESA_POR_FUNCAO, "CULTURA"));
+		List<Total> encargos = retiraVazios(service.getGastos(DESPESA_POR_FUNCAO, "ENCARGOS ESPECIAIS"));
+		List<Total> saneamento = retiraVazios(service.getGastos(DESPESA_POR_FUNCAO, "SANEAMENTO"));
+		List<Total> assistencia = retiraVazios(service.getGastos(DESPESA_POR_FUNCAO, "ASSISTÊNCIA SOCIAL"));
+		List<Total> ambiental = retiraVazios(service.getGastos(DESPESA_POR_FUNCAO, "GESTÃO AMBIENTAL"));
+		List<Total> comunicacoes = retiraVazios(service.getGastos(DESPESA_POR_FUNCAO, "COMUNICAÇÕES"));
+		List<Total> comercio = retiraVazios(service.getGastos(DESPESA_POR_FUNCAO, "COMÉRCIO E SERVIÇOS"));
+		List<Total> habitacao = retiraVazios(service.getGastos(DESPESA_POR_FUNCAO, "HABITAÇÃO"));
+		List<Total> desporto = retiraVazios(service.getGastos(DESPESA_POR_FUNCAO, "DESPORTO E LAZER"));
+		List<Total> cidadania = retiraVazios(service.getGastos(DESPESA_POR_FUNCAO, "DIREITOS DA CIDADANIA"));
+		List<Total> ciencia = retiraVazios(service.getGastos(DESPESA_POR_FUNCAO, "CIÊNCIA E TECNOLOGIA"));
+		List<Total> trabalho = retiraVazios(service.getGastos(DESPESA_POR_FUNCAO, "TRABALHO"));
 		
 		//TODO dá pra colocar isso em um for
 		double porcentagem;

@@ -115,10 +115,10 @@ public class SaudeController extends Controller{
     		
     		sendMailBoasVindas(cv);
     		
-    		//return abreCartao(email);
+    		return abreCartao(email);
     		
-    		flash("messageVacina", "E-mail cadastrado com sucesso! " +
-    				"Tentaremos informá-lo quando estiver perto da data das suas próximas vacinações.");
+    		//flash("messageVacina", "E-mail cadastrado com sucesso! " +
+    		//		"Tentaremos informá-lo quando estiver perto da data das suas próximas vacinações.");
     	} catch (Exception ex){
     		flash("messageVacina", "Erro cadastrando e-mail. Por favor verifique os dados e tente novamente. (" + ex.getMessage() + ")");
     		ex.printStackTrace();
@@ -160,6 +160,10 @@ public class SaudeController extends Controller{
 		
 		try {
 			List<ContatoVacina> users = service.getUsuarios(email);
+			
+			if (users.isEmpty()) {
+				throw new Exception("E-mail não cadastrado");
+			}
 			
 			List<PessoaDoses> pessoaDoses = new ArrayList<PessoaDoses>();
 			PessoaDoses pd;

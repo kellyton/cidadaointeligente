@@ -58,6 +58,23 @@
 						       <p>Enviaremos um e-mail 1 ou 2 dias antes da data que deverá tomar a vacina. Esta funcionalidade
 						       é experimental, não deixe de ter em mãos o seu cartão de vacinação e o dos seus filhos.</a></p>
 						     </div>
+						     
+						     @if(flash.containsKey("messageLogin")) {
+							 <div class="alert-message error">
+							 	<strong>@flash.get("messageLogin")</strong> 
+							 </div>
+							 }
+						     <div class="well">
+					              <h5>Já possui cadastro?</h5>
+					              <p>Informe o e-mail cadastrado para ver as suas informações de vacinação:</p>
+					              <form class="form-inline" role="form" method="post" action="@routes.SaudeController.cartaoVacinacao()">
+					                <div class="form-group">
+					                  <input type="email" class="form-control" id="email" name="email" placeholder="E-mail">
+					                </div>
+					                <button type="submit" class="btn btn-default">Enviar</button>
+					              </form>
+						     </div>
+						     
 						 </div>
 					 </div>
 	                 

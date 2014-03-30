@@ -49,7 +49,7 @@
 			                    <tbody>
 			                    	@for((item, index) <- items.zipWithIndex){
 				                    <tr>
-				                      <td><a href="">@item.getNome()</a></td>
+				                      <td><a href="@routes.CulturaController.showPonto(item.getId())">@item.getNome()</a></td>
 				                      <td>@item.getBairro()</td>
 				                    </tr>
 				                    }

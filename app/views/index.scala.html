@@ -21,6 +21,11 @@
                 <a href="@routes.FinancasController.showCompareOrcamentoAnual()" class="da-link">Saiba aqui</a>
               </div>
               <div class="da-slide">
+              	<h2><span>Opções de Cultura e Lazer</span></h2>
+                <p>Quer visitar ir ao Teatro ou visitar os Museus, Pontes e Shoppings do Recife? O que está esperando?</p>
+                <a href="@routes.CulturaController.pontos(99)" class="da-link">Saiba aqui</a>
+              </div>
+              <div class="da-slide">
               	<h2><span>Precisa de um atendimento médico?</span></h2>
                 <p>Se precisar de um atendimento médico, é só procurar no menu de Unidades de Saúde. E indicaremos os mais próximos de você!</p>
                 <a href="@routes.SaudeController.unidadesSaude(99)" class="da-link">Saiba aqui</a>
@@ -42,7 +47,8 @@
 <div class="slider-features">
   <div class="container">
     <div class="row">
-      <div class="col-md-4 col-sm-4">
+      
+      <div class="col-md-3 col-sm-3">
         <div class="onethree">
           <div class="onethree-left">
             <!-- Font awesome icon -->
@@ -60,7 +66,45 @@
           <div class="clearfix"></div>
         </div>
       </div>
-      <div class="col-md-4 col-sm-4">
+      
+      <div class="col-md-3 col-sm-3">
+        <div class="onethree">
+          <div class="onethree-left">
+            <div class="img"><i class="icon-edit"></i></div>
+          </div>
+          <div class="onethree-right">
+            <h5><a href="@routes.EducacaoController.escolas(1)">Cultura e Turismo</a></h5>
+            <p class="meta">Veja o <a href="@routes.CulturaController.orcamento()">
+            Orçamento da Cultura</a>, 
+            localize os <a href="@routes.CulturaController.pontos(99)">Pontos Turísticos</a>,
+            os <a href="@routes.CulturaController.pontos(3)">Teatros</a>, 
+            os <a href="@routes.CulturaController.pontos(4)">Museus</a>,
+            as <a href="@routes.CulturaController.pontos(5)">Pontes</a>,
+            e os <a href="@routes.CulturaController.pontos(2)">Shoppings</a>
+            mais próximos.
+          </div>
+          <div class="clearfix"></div>   
+        </div>     
+      </div>
+      
+      <div class="col-md-3 col-sm-3">
+        <div class="onethree">
+          <div class="onethree-left">
+            <div class="img"><i class="icon-plus-sign"></i></div>
+          </div>
+          <div class="onethree-right">
+            <h5><a href="@routes.SaudeController.unidadesSaude(99)">Saúde</a></h5>
+            <p class="meta">Veja o <a href="@routes.SaudeController.orcamento()">Orçamento 
+            da saúde</a>, <a href="@routes.SaudeController.vacinacao()">
+            receba lembretes de vacinação </a>, e Localize 
+            <a href="@routes.SaudeController.unidadesSaude(99)">unidades de saúde, clínicas e hospitais</a>
+             perto de você.</p>
+          </div>
+          <div class="clearfix"></div>  
+        </div>      
+      </div>
+      
+      <div class="col-md-3 col-sm-3">
         <div class="onethree">
           <div class="onethree-left">
             <div class="img"><i class="icon-edit"></i></div>
@@ -71,27 +115,12 @@
             Orçamento da Educação</a>, 
             localize as <a href="@routes.EducacaoController.escolas(1)">Escolas</a> e 
             as <a href="@routes.EducacaoController.escolas(2)">Creches </a> próximas a você 
-            e veja o detalhamento de cada uma (laboratório de informática e de ciências, biblioteca, etc)</p>
+            e veja o detalhamento de cada uma.</p>
           </div>
           <div class="clearfix"></div>   
         </div>     
       </div>
-      <div class="col-md-4 col-sm-4">
-        <div class="onethree">
-          <div class="onethree-left">
-            <div class="img"><i class="icon-plus-sign"></i></div>
-          </div>
-          <div class="onethree-right">
-            <h5><a href="@routes.SaudeController.unidadesSaude(99)">Saúde</a></h5>
-            <p class="meta">Veja o <a href="@routes.SaudeController.orcamento()">Orçamento 
-            da saúde</a>, informe seu nascimento e <a href="@routes.SaudeController.vacinacao()">
-            receba lembretes de vacinação </a>, e Localize 
-            <a href="@routes.SaudeController.unidadesSaude(99)">unidades de saúde, clínicas e hospitais</a>
-             perto de você.</p>
-          </div>
-          <div class="clearfix"></div>  
-        </div>      
-      </div>
+      
     </div>
   </div>
 </div>

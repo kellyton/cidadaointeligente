@@ -39,6 +39,16 @@
 
 <body>
 
+@* Facebook Plugin *@
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/pt_BR/all.js#xfbml=1&appId=475571202569480";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
 <!-- Header starts -->
   <header>
 
@@ -193,7 +203,17 @@
 <div class="sep"></div>	
 
 <!-- Below slider ends -->
-  
+@* Facebook box *@
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="well">
+				<div class="fb-like-box" data-href="https://www.facebook.com/cidadaorecifense" data-width="920" data-height="200" data-colorscheme="light" data-show-faces="true" data-header="true" data-stream="false" data-show-border="true"></div>
+			</div>
+		</div>
+	</div>
+</div>
+
 <div class="container newsletter">
   <div class="row">
     <div class="col-md-12">
